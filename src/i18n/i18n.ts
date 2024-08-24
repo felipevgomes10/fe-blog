@@ -3,7 +3,9 @@ import { notFound } from "next/navigation";
 import { supportedLocales } from "./supported-locales";
 
 export default getRequestConfig(async ({ locale }) => {
-  if (!supportedLocales.includes(locale)) notFound();
+  if (!supportedLocales.includes(locale as (typeof supportedLocales)[number])) {
+    notFound();
+  }
 
   return {
     messages: (await import(`./messages/${locale}.json`)).default,
