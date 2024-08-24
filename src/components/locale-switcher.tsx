@@ -13,7 +13,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useTransition } from "react";
 
 export default function LocaleSwitcher() {
-  const t = useTranslations("localeSwitcher");
+  const t = useTranslations("locale_switcher");
   const locale = useLocale() as (typeof supportedLocales)[number];
 
   const router = useRouter();

@@ -5,7 +5,7 @@ import Error from "next/error";
 
 export default function NotFound() {
   const locale = useLocale();
-  const t = useTranslations("notFound");
+  const t = useTranslations("not_found");
 
   return (
     <html lang={locale}>

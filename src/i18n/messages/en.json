@@ -9,11 +9,11 @@
     "title": "FE Blog",
     "description": "Just another React blog"
   },
-  "localeSwitcher": {
+  "locale_switcher": {
     "en": "English",
     "pt": "Portuguese"
   },
-  "notFound": {
+  "not_found": {
     "title": "This page could not be found"
   }
 }
