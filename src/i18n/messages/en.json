@@ -15,5 +15,8 @@
   },
   "not_found": {
     "title": "This page could not be found"
+  },
+  "app_header": {
+    "title": "The React Blog"
   }
 }
