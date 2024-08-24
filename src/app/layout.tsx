@@ -9,7 +9,7 @@ import {
   unstable_setRequestLocale,
 } from "next-intl/server";
 import { Inter } from "next/font/google";
-import "../globals.css";
+import "./globals.css";
 
 type GenerateMetadata = {
   params: { locale: string };

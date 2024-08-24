@@ -12,5 +12,8 @@
   "localeSwitcher": {
     "en": "English",
     "pt": "Portuguese"
+  },
+  "notFound": {
+    "title": "This page could not be found"
   }
 }
