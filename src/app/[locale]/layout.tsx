@@ -56,7 +56,7 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <main className="grid grid-rows-[max-content_1fr] gap-4 p-6">
+            <main className="grid grid-rows-[max-content_1fr] gap-4 p-6 min-h-dvh">
               <AppHeader />
               {children}
             </main>
