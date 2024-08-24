@@ -28,7 +28,11 @@ export default function LocaleSwitcher() {
   }
 
   return (
-    <Select onValueChange={handleValueChange} disabled={isPending}>
+    <Select
+      onValueChange={handleValueChange}
+      defaultValue={locale}
+      disabled={isPending}
+    >
       <SelectTrigger className="w-[150px]">
         <SelectValue placeholder={t(locale)} />
       </SelectTrigger>
