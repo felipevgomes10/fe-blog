@@ -9,7 +9,7 @@
     "title": "FE Blog",
     "description": "Somente mais um blog React"
   },
-  "localeSwitcher": {
+  "locale_switcher": {
     "en": "Inglês",
     "pt": "Português"
   },
