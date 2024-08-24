@@ -1,0 +1,16 @@
+{
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "reader": "Toggle theme"
+  },
+  "metadata": {
+    "title": "FE Blog",
+    "description": "Just another React blog"
+  },
+  "localeSwitcher": {
+    "en": "English",
+    "pt": "Portuguese"
+  }
+}

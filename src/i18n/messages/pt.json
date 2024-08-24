@@ -1,0 +1,16 @@
+{
+  "theme": {
+    "light": "Claro",
+    "dark": "Escuro",
+    "system": "Sistema",
+    "reader": "Mudar tema"
+  },
+  "metadata": {
+    "title": "FE Blog",
+    "description": "Somente mais um blog React"
+  },
+  "localeSwitcher": {
+    "en": "Inglês",
+    "pt": "Português"
+  }
+}
