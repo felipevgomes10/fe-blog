@@ -1,54 +1,34 @@
-import { CodeBlock } from "./code-block";
+import { env } from "@/env/env";
+import {
+  parsePostFromApi,
+  type APIPost,
+} from "@/utils/parse-post-from-api/parse-post-from-api";
+import { getLocale } from "next-intl/server";
+import { Markdown } from "./markdown";
 
 type ArticleProps = {
   slug: string;
 };
 
-const mockedCode = `
-import React from "react";
+async function getPost(slug: string) {
+  const locale = await getLocale();
 
-type TestProps = {};
+  const response = await fetch(
+    `${env.server.GITHUB_API_URL}/${locale}/${slug}.md`,
+    { next: { revalidate: 300 } }
+  );
+  const post: APIPost = await response.json();
 
-export function Test(props: TestProps) {
-    return <p>Hello world</p>;
-}     
-`;
+  return parsePostFromApi(post);
+}
 
-export function Article({ slug }: Readonly<ArticleProps>) {
+export async function Article({ slug }: Readonly<ArticleProps>) {
+  const post = await getPost(slug);
+
   return (
     <div className="m-auto h-full">
-      {slug}
       <article className="prose lg:prose-xl prose-slate dark:prose-invert">
-        <h1>Titulo</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi,
-          accusamus esse, inventore laudantium molestias quis, illo minus
-          impedit excepturi possimus ipsa sit nihil ipsum sint totam doloremque
-          dicta voluptatum voluptate?
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo,
-          reiciendis quaerat! Architecto commodi asperiores veniam voluptas rem
-          voluptate facilis? Vel qui similique natus adipisci voluptas corrupti
-          dolorum unde ut facilis.
-        </p>
-        <blockquote>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam aut
-          quidem amet quas, omnis voluptatem ex reprehenderit nobis? Accusantium
-          accusamus, sed veniam laboriosam recusandae autem doloribus
-          dignissimos cumque officiis expedita?
-        </blockquote>
-
-        <CodeBlock code={mockedCode} />
-
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
-          dolores libero deserunt. Et assumenda excepturi molestiae officiis
-          tenetur hic soluta quod quo ipsum. Accusamus quas nobis, hic nostrum
-          placeat beatae?
-        </p>
-
-        <CodeBlock code={mockedCode} />
+        <Markdown content={post.content} />
       </article>
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { trimCode } from "@/utils/trim-code/trim-code";
+import { indentCode } from "@/utils/indent-code/indent-code";
 import hljs from "highlight.js";
 import { Copy } from "lucide-react";
 import { useEffect, useRef } from "react";
@@ -42,7 +42,7 @@ export function CodeBlock({ code }: Readonly<CodeBlockProps>) {
       </Button>
       <pre className="!bg-background !p-0">
         <code ref={codeRef} className="rounded-sm">
-          {trimCode(code)}
+          {indentCode(code)}
         </code>
       </pre>
     </div>
