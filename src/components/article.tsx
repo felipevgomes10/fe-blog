@@ -5,7 +5,7 @@ type ArticleProps = {
 };
 
 const mockedCode = `
-import React from {"react"};
+import React from "react";
 
 type TestProps = {};
 

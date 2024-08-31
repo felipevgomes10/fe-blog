@@ -1,4 +1,5 @@
 import { AppHeader } from "@/components/app-header";
+import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/contexts/theme-provider";
 import { Themes } from "@/contexts/theme-provider.types";
 import { supportedLocales } from "@/i18n/supported-locales";
@@ -10,6 +11,7 @@ import {
   unstable_setRequestLocale,
 } from "next-intl/server";
 import { Inter } from "next/font/google";
+
 import "../globals.css";
 
 type GenerateMetadata = {
@@ -60,6 +62,7 @@ export default async function RootLayout({
               <AppHeader />
               {children}
             </main>
+            <Toaster richColors closeButton />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
