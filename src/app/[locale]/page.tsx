@@ -11,7 +11,6 @@ async function getPosts() {
   const locale = await getLocale();
 
   const response = await fetch(`${env.server.GITHUB_API_URL}/${locale}`, {
-    cache: "force-cache",
     next: { revalidate: 300 },
   });
   const posts: APIPost[] = await response.json();
