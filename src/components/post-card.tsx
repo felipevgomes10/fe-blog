@@ -36,7 +36,7 @@ export function PostCard({
       )}
       <div>
         <CardHeader className="px-9">
-          <CardTitle>{title}</CardTitle>
+          <CardTitle className="capitalize">{title}</CardTitle>
         </CardHeader>
         <CardContent className="px-9">
           <CardDescription>{description}</CardDescription>
