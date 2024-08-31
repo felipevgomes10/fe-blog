@@ -3,10 +3,11 @@ import {
   parsePostFromApi,
   type APIPost,
 } from "@/utils/parse-post-from-api/parse-post-from-api";
-import { getLocale } from "next-intl/server";
+import { getLocale, unstable_setRequestLocale } from "next-intl/server";
 import { Markdown } from "./markdown";
 
 type ArticleProps = {
+  locale: string;
   slug: string;
 };
 
@@ -22,7 +23,9 @@ async function getPost(slug: string) {
   return parsePostFromApi(post);
 }
 
-export async function Article({ slug }: Readonly<ArticleProps>) {
+export async function Article({ slug, locale }: Readonly<ArticleProps>) {
+  unstable_setRequestLocale(locale);
+
   const post = await getPost(slug);
 
   return (

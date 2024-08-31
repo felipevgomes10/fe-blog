@@ -4,8 +4,14 @@ import {
   parsePostFromApi,
   type APIPost,
 } from "@/utils/parse-post-from-api/parse-post-from-api";
-import { getLocale } from "next-intl/server";
+import { getLocale, unstable_setRequestLocale } from "next-intl/server";
 import React from "react";
+
+type HomeProps = {
+  params: {
+    locale: string;
+  };
+};
 
 async function getPosts() {
   const locale = await getLocale();
@@ -18,7 +24,11 @@ async function getPosts() {
   return Promise.all(posts.map(parsePostFromApi));
 }
 
-export default async function Home() {
+export default async function Home({
+  params: { locale },
+}: Readonly<HomeProps>) {
+  unstable_setRequestLocale(locale);
+
   const posts = await getPosts();
 
   return (
