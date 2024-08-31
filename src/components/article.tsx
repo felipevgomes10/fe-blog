@@ -1,7 +1,8 @@
-import { trimCode } from "@/utils/trim-code/trim-code";
 import { CodeBlock } from "./code-block";
 
-type ArticleProps = {};
+type ArticleProps = {
+  slug: string;
+};
 
 const mockedCode = `
 import React from {"react"};
@@ -13,9 +14,10 @@ export function Test(props: TestProps) {
 }     
 `;
 
-export function Article(props: ArticleProps) {
+export function Article({ slug }: Readonly<ArticleProps>) {
   return (
     <div className="m-auto h-full">
+      {slug}
       <article className="prose lg:prose-xl prose-slate dark:prose-invert">
         <h1>Titulo</h1>
         <p>
@@ -37,7 +39,7 @@ export function Article(props: ArticleProps) {
           dignissimos cumque officiis expedita?
         </blockquote>
 
-        <CodeBlock code={trimCode(mockedCode)} />
+        <CodeBlock code={mockedCode} />
 
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
@@ -46,7 +48,7 @@ export function Article(props: ArticleProps) {
           placeat beatae?
         </p>
 
-        <CodeBlock code={trimCode(mockedCode)} />
+        <CodeBlock code={mockedCode} />
       </article>
     </div>
   );

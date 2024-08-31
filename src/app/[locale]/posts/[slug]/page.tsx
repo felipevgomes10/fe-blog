@@ -10,6 +10,6 @@ export async function generateStaticParams() {
   return [];
 }
 
-export default function Post({ params: { slug } }: PostProps) {
-  return <Article />;
+export default function Post({ params: { slug } }: Readonly<PostProps>) {
+  return <Article slug={slug} />;
 }
