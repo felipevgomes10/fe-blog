@@ -32,7 +32,7 @@ export function CodeBlock({ code }: Readonly<CodeBlockProps>) {
   }
 
   return (
-    <div className="not-prose relative w-[calc(100vw-50px)] sm:w-auto">
+    <div className="not-prose relative w-[calc(100vw-100px)] sm:w-auto">
       <Button
         variant="link"
         className="absolute top-2 right-2 bg-slate-900 hover:bg-slate-200 hover:bg-opacity-30 border"
