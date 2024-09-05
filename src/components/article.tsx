@@ -17,7 +17,7 @@ async function getPost(slug: string) {
   const locale = await getLocale();
 
   const response = await api(
-    `${env.server.GITHUB_API_URL}/${locale}/${slug}.md`
+    `${env.server.GITHUB_API_URL}/${locale}/${slug}.md`,
   );
   const post: APIPost = await response.json();
 
@@ -32,7 +32,7 @@ export async function Article({ slug, locale }: Readonly<ArticleProps>) {
   return (
     <div className="flex flex-col gap-8">
       {post.thumbnail && (
-        <div className="relative w-full h-80 md:h-96 lg:h-[500px] rounded-md overflow-hidden">
+        <div className="relative h-80 w-full overflow-hidden rounded-md md:h-96 lg:h-[500px]">
           <Image
             src={post.thumbnail}
             alt={post.title}
@@ -43,10 +43,10 @@ export async function Article({ slug, locale }: Readonly<ArticleProps>) {
         </div>
       )}
       <div
-        className="max-w-max data-[translate=true]:max-w-[95%] lg:data-[translate=true]:max-w-max m-auto min-h-screen bg-background data-[translate=true]:-translate-y-52 p-6 lg:data-[translate=true]:p-8 rounded-md"
+        className="m-auto min-h-screen max-w-max rounded-md bg-background p-6 data-[translate=true]:max-w-[95%] data-[translate=true]:-translate-y-52 lg:data-[translate=true]:max-w-max lg:data-[translate=true]:p-8"
         data-translate={!!post.thumbnail}
       >
-        <article className="prose lg:prose-xl prose-slate dark:prose-invert">
+        <article className="prose prose-slate dark:prose-invert lg:prose-xl">
           <Markdown content={post.content} />
         </article>
       </div>

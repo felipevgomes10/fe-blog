@@ -10,13 +10,13 @@ export function AppHeader() {
   const t = useTranslations("app_header");
 
   return (
-    <div className="sticky z-50 top-0 bg-background">
-      <nav className="flex justify-start items-center flex-wrap sm:flex-nowrap gap-4 max-w-screen-xl w-full m-auto py-4">
+    <div className="sticky top-0 z-50 bg-background">
+      <nav className="m-auto flex w-full max-w-screen-xl flex-wrap items-center justify-start gap-4 py-4 sm:flex-nowrap">
         <h1 className="mr-auto scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-3xl">
           {pathname !== "/" && <Link href="/">{t("title")}</Link>}
           {pathname === "/" && t("title")}
         </h1>
-        <div className="flex gap-4 w-full sm:w-auto">
+        <div className="flex w-full gap-4 sm:w-auto">
           <LocaleSwitcher />
           <ThemeToggle />
         </div>

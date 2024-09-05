@@ -35,10 +35,10 @@ export function CodeBlock({ code }: Readonly<CodeBlockProps>) {
     <div className="not-prose relative w-[calc(100vw-100px)] sm:w-auto">
       <Button
         variant="link"
-        className="absolute top-2 right-2 bg-slate-900 hover:bg-slate-200 hover:bg-opacity-30 border"
+        className="absolute right-2 top-2 border bg-slate-900 hover:bg-slate-200 hover:bg-opacity-30"
         onClick={handleCopyCode}
       >
-        <Copy className="text-slate-50 w-4" />
+        <Copy className="w-4 text-slate-50" />
       </Button>
       <pre className="!bg-background !p-0">
         <code ref={codeRef} className="rounded-sm !bg-slate-900">
