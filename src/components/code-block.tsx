@@ -32,16 +32,16 @@ export function CodeBlock({ code }: Readonly<CodeBlockProps>) {
   }
 
   return (
-    <div className="relative">
+    <div className="not-prose relative w-[calc(100vw-50px)] sm:w-auto">
       <Button
         variant="link"
-        className="absolute top-2 right-2 hover:bg-slate-200 hover:bg-opacity-30"
+        className="absolute top-2 right-2 bg-slate-900 hover:bg-slate-200 hover:bg-opacity-30 border"
         onClick={handleCopyCode}
       >
         <Copy className="text-slate-50 w-4" />
       </Button>
       <pre className="!bg-background !p-0">
-        <code ref={codeRef} className="rounded-sm">
+        <code ref={codeRef} className="rounded-sm !bg-slate-900">
           {indentCode(code)}
         </code>
       </pre>
