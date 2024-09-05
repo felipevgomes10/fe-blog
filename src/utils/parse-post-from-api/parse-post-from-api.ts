@@ -1,3 +1,5 @@
+import { api } from "@/lib/api";
+
 export type APIPost = {
   name: string;
   path: string;
@@ -20,7 +22,7 @@ export async function parsePostFromApi({
 }: APIPost): Promise<Post> {
   const slug = getPostSlug(name);
 
-  const response = await fetch(download_url);
+  const response = await api(download_url);
   const content = await response.text();
 
   const { title, description, thumbnail } = getPostInformation(content);

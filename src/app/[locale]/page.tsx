@@ -1,5 +1,6 @@
 import { PostCard } from "@/components/post-card";
 import { env } from "@/env/env";
+import { api } from "@/lib/api";
 import {
   parsePostFromApi,
   type APIPost,
@@ -16,9 +17,7 @@ type HomeProps = {
 async function getPosts() {
   const locale = await getLocale();
 
-  const response = await fetch(`${env.server.GITHUB_API_URL}/${locale}`, {
-    next: { revalidate: 300 },
-  });
+  const response = await api(`${env.server.GITHUB_API_URL}/${locale}`);
   const posts: APIPost[] = await response.json();
 
   return Promise.all(posts.map(parsePostFromApi));
