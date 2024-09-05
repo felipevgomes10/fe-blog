@@ -24,13 +24,15 @@ export function PostCard({
   thumbnail,
 }: Readonly<PostCardProps>) {
   return (
-    <Card className="flex justify-start items-center overflow-hidden transition-all hover:-translate-y-1 hover:border-r-4 hover:border-r-accent-foreground hover:shadow-md">
+    <Card className="flex justify-start flex-col md:flex-row items-center overflow-hidden transition-all hover:-translate-y-1 hover:border-r-4 hover:border-r-accent-foreground hover:shadow-md">
       {thumbnail && (
         <Image
+          className="max-h-60 max-w-full md:max-w-60 object-cover object-center"
           src={thumbnail}
           alt={title}
           width={200}
           height={200}
+          layout="responsive"
           quality={75}
         />
       )}
