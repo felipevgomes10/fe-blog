@@ -1,4 +1,3 @@
-import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import {
@@ -9,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
+import { ViewTransitionLink } from "./view-transition-link";
 
 type PostCardProps = {
   slug: string;
@@ -45,7 +45,9 @@ export function PostCard({
         </CardContent>
         <CardFooter>
           <Button variant="link" asChild>
-            <Link href={`/posts/${slug}`}>Read more</Link>
+            <ViewTransitionLink href={`/posts/${slug}`}>
+              Read more
+            </ViewTransitionLink>
           </Button>
         </CardFooter>
       </div>

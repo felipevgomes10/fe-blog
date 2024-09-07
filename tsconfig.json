@@ -28,7 +28,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "i18n.d.ts"
+    "i18n.d.ts",
+    "types.d.ts"
   ],
   "exclude": ["node_modules"]
 }
