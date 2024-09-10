@@ -67,10 +67,26 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "view-transition-fade-in": {
+          from: { opacity: "0" },
+        },
+        "view-transition-fade-out": {
+          to: { opacity: "0" },
+        },
+        "view-transition-slide-from-right": {
+          from: { transform: "translateX(30px)" },
+        },
+        "view-transition-slide-to-left": {
+          to: { transform: "translateX(-30px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "view-transition-fade-in":
+          "210ms cubic-bezier(0, 0, 0.2, 1) 90ms both view-transition-fade-in, 300ms cubic-bezier(0.4, 0, 0.2, 1) both view-transition-slide-from-right",
+        "view-transition-fade-out":
+          "90ms cubic-bezier(0.4, 0, 1, 1) both view-transition-fade-out, 300ms cubic-bezier(0.4, 0, 0.2, 1) both view-transition-slide-to-left",
       },
     },
   },
