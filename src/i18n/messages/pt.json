@@ -20,5 +20,12 @@
   },
   "app_header": {
     "title": "O Blog React"
+  },
+  "post_card": {
+    "read_more": "Leia mais"
+  },
+  "toast": {
+    "success": "Código copiado para a área de transferência",
+    "error": "Falha ao copiar o código para a área de transferência"
   }
 }

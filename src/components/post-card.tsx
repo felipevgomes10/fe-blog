@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import {
@@ -17,12 +18,14 @@ type PostCardProps = {
   thumbnail?: string;
 };
 
-export function PostCard({
+export async function PostCard({
   slug,
   title,
   description,
   thumbnail,
 }: Readonly<PostCardProps>) {
+  const t = await getTranslations("post_card");
+
   return (
     <Card className="flex flex-col items-center justify-start overflow-hidden transition-all hover:-translate-y-1 hover:border-r-4 hover:border-r-accent-foreground hover:shadow-md md:flex-row">
       {thumbnail && (
@@ -46,7 +49,7 @@ export function PostCard({
         <CardFooter>
           <Button variant="link" asChild>
             <ViewTransitionLink href={`/posts/${slug}`}>
-              Read more
+              {t("read_more")}
             </ViewTransitionLink>
           </Button>
         </CardFooter>

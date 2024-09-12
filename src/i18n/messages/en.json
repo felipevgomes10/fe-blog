@@ -20,5 +20,12 @@
   },
   "app_header": {
     "title": "The React Blog"
+  },
+  "post_card": {
+    "read_more": "Read more"
+  },
+  "toast": {
+    "success": "Code copied to clipboard",
+    "error": "Failed to copy code to clipboard"
   }
 }

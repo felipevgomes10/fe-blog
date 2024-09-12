@@ -11,9 +11,13 @@ import "@/lib/highlight";
 
 type CodeBlockProps = {
   code: string;
+  toastTexts: {
+    success: string;
+    error: string;
+  };
 };
 
-export function CodeBlock({ code }: Readonly<CodeBlockProps>) {
+export function CodeBlock({ code, toastTexts }: Readonly<CodeBlockProps>) {
   const codeRef = useRef(null);
 
   useEffect(() => {
@@ -25,9 +29,9 @@ export function CodeBlock({ code }: Readonly<CodeBlockProps>) {
   async function handleCopyCode() {
     try {
       await navigator.clipboard.writeText(code);
-      toast.success("Code copied to clipboard");
+      toast.success(toastTexts.success);
     } catch (error) {
-      toast.error("Failed to copy code to clipboard");
+      toast.error(toastTexts.error);
     }
   }
 
