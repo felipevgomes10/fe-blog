@@ -1,10 +1,10 @@
 import { getRequestConfig } from "next-intl/server";
-import { notFound } from "next/navigation";
+import { redirect, RedirectType } from "next/navigation";
 import { supportedLocales } from "./supported-locales";
 
 export default getRequestConfig(async ({ locale }) => {
   if (!supportedLocales.includes(locale as (typeof supportedLocales)[number])) {
-    notFound();
+    redirect("/en/not-found", RedirectType.replace);
   }
 
   return {
