@@ -14,7 +14,9 @@
     "pt": "Português"
   },
   "not_found": {
-    "title": "Esta página não pôde ser encontrada"
+    "title": "Página não encontrada",
+    "message": "A página que você está procurando não existe",
+    "back": "Voltar para a página inicial"
   },
   "app_header": {
     "title": "O Blog React"

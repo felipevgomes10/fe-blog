@@ -14,7 +14,9 @@
     "pt": "Portuguese"
   },
   "not_found": {
-    "title": "This page could not be found"
+    "title": "Page not found",
+    "message": "The page you are looking for does not exist",
+    "back": "Go back home"
   },
   "app_header": {
     "title": "The React Blog"
