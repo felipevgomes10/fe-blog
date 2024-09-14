@@ -1,5 +1,6 @@
 import { AppHeader } from "@/components/app-header";
 import { Toaster } from "@/components/ui/sonner";
+import { ViewTransition } from "@/components/view-transition";
 import { ThemeProvider } from "@/contexts/theme-provider";
 import { Themes } from "@/contexts/theme-provider.types";
 import { supportedLocales } from "@/i18n/supported-locales";
@@ -52,18 +53,20 @@ export default async function RootLayout({
     <html lang={locale} suppressHydrationWarning>
       <body className={inter.className}>
         <NextIntlClientProvider messages={messages}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme={Themes.System}
-            enableSystem
-            disableTransitionOnChange
-          >
-            <main className="grid grid-rows-[max-content_1fr] gap-4 p-6 min-h-dvh">
-              <AppHeader />
-              {children}
-            </main>
-            <Toaster richColors closeButton />
-          </ThemeProvider>
+          <ViewTransition>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme={Themes.System}
+              enableSystem
+              disableTransitionOnChange
+            >
+              <div className="grid grid-rows-[max-content_1fr] gap-4 p-6 min-h-dvh">
+                <AppHeader />
+                <main>{children}</main>
+              </div>
+              <Toaster richColors closeButton />
+            </ThemeProvider>
+          </ViewTransition>
         </NextIntlClientProvider>
       </body>
     </html>

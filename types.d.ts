@@ -1,3 +1,5 @@
+type StartViewTransition = (callback?: () => void) => void;
+
 interface Document {
-  startViewTransition: (fn?: () => void) => void;
+  startViewTransition: StartViewTransition;
 }

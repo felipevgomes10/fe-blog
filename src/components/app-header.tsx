@@ -14,15 +14,18 @@ export function AppHeader() {
   return (
     <div className="app-header sticky top-0 z-50 bg-background">
       <nav className="m-auto flex w-full max-w-screen-xl flex-wrap items-center justify-start gap-4 py-4 sm:flex-nowrap">
-        {pathname !== "/" && <ChevronLeft className="h-6 w-6" />}
         <ViewTransitionLink
           className={
-            "app-header-text mr-auto flex scroll-m-20 items-center gap-2 text-2xl font-extrabold tracking-tight data-[disabled=true]:pointer-events-none lg:text-3xl"
+            "mr-auto flex scroll-m-20 items-center gap-2 text-2xl font-extrabold tracking-tight data-[disabled=true]:pointer-events-none lg:text-3xl"
           }
           data-disabled={pathname === "/"}
           href="/"
         >
-          {t("title")}
+          <ChevronLeft
+            className="app-header-icon h-6 w-6 data-[hidden=true]:hidden"
+            data-hidden={pathname === "/"}
+          />
+          <span className="app-header-text">{t("title")}</span>
         </ViewTransitionLink>
         <div className="flex w-full gap-4 sm:w-auto">
           <LocaleSwitcher />
