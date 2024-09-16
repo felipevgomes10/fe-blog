@@ -7,7 +7,7 @@
   },
   "metadata": {
     "title": "FE Blog",
-    "description": "Just another React blog"
+    "description": "Just another Frontend blog"
   },
   "locale_switcher": {
     "en": "English",
@@ -19,7 +19,7 @@
     "back": "Go back home"
   },
   "app_header": {
-    "title": "The React Blog"
+    "title": "The Frontend Blog"
   },
   "post_card": {
     "read_more": "Read more"

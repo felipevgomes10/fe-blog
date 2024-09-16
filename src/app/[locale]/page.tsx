@@ -1,11 +1,6 @@
 import { PostCard } from "@/components/post-card";
-import { env } from "@/env/env";
-import { api } from "@/lib/api";
-import {
-  parsePostFromApi,
-  type APIPost,
-} from "@/utils/parse-post-from-api/parse-post-from-api";
-import { getLocale, unstable_setRequestLocale } from "next-intl/server";
+import { getPosts } from "@/data/get-posts";
+import { unstable_setRequestLocale } from "next-intl/server";
 import React from "react";
 
 type HomeProps = {
@@ -13,15 +8,6 @@ type HomeProps = {
     locale: string;
   };
 };
-
-async function getPosts() {
-  const locale = await getLocale();
-
-  const response = await api(`${env.server.GITHUB_API_URL}/${locale}`);
-  const posts: APIPost[] = await response.json();
-
-  return Promise.all(posts.map(parsePostFromApi));
-}
 
 export default async function Home({
   params: { locale },
@@ -31,7 +17,7 @@ export default async function Home({
   const posts = await getPosts();
 
   return (
-    <section className="flex flex-col gap-4 max-w-screen-xl m-auto w-full h-full">
+    <section className="m-auto flex h-full w-full max-w-screen-xl flex-col gap-4">
       {React.Children.toArray(
         posts.map(({ slug, title, description, thumbnail }) => (
           <PostCard
@@ -40,7 +26,7 @@ export default async function Home({
             description={description}
             thumbnail={thumbnail}
           />
-        ))
+        )),
       )}
     </section>
   );
