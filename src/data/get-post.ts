@@ -14,5 +14,7 @@ export async function getPost(slug: string) {
   );
   const post: APIPost = await response.json();
 
-  return parsePostFromApi(post);
+  const parsedPost = parsePostFromApi(post);
+
+  return parsedPost;
 }

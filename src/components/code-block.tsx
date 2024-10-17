@@ -21,9 +21,7 @@ export function CodeBlock({ code, toastTexts }: Readonly<CodeBlockProps>) {
   const codeRef = useRef(null);
 
   useEffect(() => {
-    if (codeRef && codeRef.current) {
-      hljs.highlightBlock(codeRef.current);
-    }
+    if (codeRef && codeRef.current) hljs.highlightBlock(codeRef.current);
   }, [code]);
 
   async function handleCopyCode() {
