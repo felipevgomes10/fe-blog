@@ -4,7 +4,11 @@ import type { Post } from "@/utils/parse-post-from-api/parse-post-from-api";
 import { useTranslations } from "next-intl";
 import { useEffect, useMemo } from "react";
 import { createRoot } from "react-dom/client";
+import ReactMarkdown from "react-markdown";
 import { CodeBlock } from "./code-block";
+
+import rehypeRaw from "rehype-raw";
+import rehypeSanitize from "rehype-sanitize";
 
 type MarkdownProps = {
   content: Post["content"];
@@ -42,5 +46,9 @@ export function Markdown({ content }: Readonly<MarkdownProps>) {
     });
   }, [toastTexts]);
 
-  return <div dangerouslySetInnerHTML={{ __html: content }} />;
+  return (
+    <ReactMarkdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>
+      {content}
+    </ReactMarkdown>
+  );
 }
