@@ -15,6 +15,15 @@ export function Markdown({ content }: Readonly<MarkdownProps>) {
     <ReactMarkdown
       rehypePlugins={[rehypeRaw, rehypeSanitize]}
       components={{
+        pre: (props) => {
+          const { node, ...rest } = props;
+          return (
+            <pre
+              className="mx-auto w-[350px] max-w-full sm:w-[500px] md:w-screen"
+              {...rest}
+            />
+          );
+        },
         code: (props) => {
           const { node, children, ...rest } = props;
 
