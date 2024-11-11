@@ -1,5 +1,3 @@
-"use client";
-
 import { hljs } from "@/lib/highlight";
 import { createLine } from "@/utils/create-line/create-line";
 import type { Post } from "@/utils/parse-post-from-api/parse-post-from-api";
