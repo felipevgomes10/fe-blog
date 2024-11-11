@@ -21,6 +21,16 @@
   "app_header": {
     "title": "The Frontend Blog"
   },
+  "articles_list": {
+    "empty": "No articles found"
+  },
+  "article": {
+    "not_found": {
+      "title": "Article not found",
+      "message": "The article you are looking for does not exist in this language",
+      "back": "Go back home"
+    }
+  },
   "post_card": {
     "read_more": "Read more"
   },

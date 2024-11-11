@@ -1,6 +1,6 @@
 import { PostCard } from "@/components/post-card";
 import { getPosts } from "@/data/get-posts";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import React from "react";
 
 type HomeProps = {
@@ -14,7 +14,18 @@ export default async function Home({
 }: Readonly<HomeProps>) {
   unstable_setRequestLocale(locale);
 
-  const posts = await getPosts();
+  const [t, posts] = await Promise.all([
+    getTranslations({ locale, namespace: "articles_list" }),
+    getPosts(),
+  ]);
+
+  if (!posts.length) {
+    return (
+      <section className="flex h-full w-full items-center justify-center">
+        <p className="text-center">{t("empty")}</p>
+      </section>
+    );
+  }
 
   return (
     <section className="m-auto flex h-full w-full max-w-screen-xl flex-col gap-4">

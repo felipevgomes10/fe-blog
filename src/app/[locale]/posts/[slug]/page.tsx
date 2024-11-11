@@ -20,12 +20,19 @@ export async function generateMetadata({
   params: { locale, slug },
 }: GenerateMetadata): Promise<Metadata> {
   const [t, post] = await Promise.all([
-    getTranslations({ locale, namespace: "metadata" }),
+    getTranslations({ locale }),
     getPost(slug),
   ]);
 
+  if (!post) {
+    return {
+      title: t("article.not_found.title"),
+      description: t("article.not_found.message"),
+    };
+  }
+
   return {
-    title: `${t("title")} - ${post.title}`,
+    title: `${t("metadata.title")} - ${post.title}`,
     description: post.description,
   };
 }

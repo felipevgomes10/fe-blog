@@ -12,6 +12,9 @@ export async function getPost(slug: string) {
   const response = await api(
     `${env.server.GITHUB_API_URL}/${locale}/${slug}.md`,
   );
+
+  if (response.status === 404) return null;
+
   const post: APIPost = await response.json();
 
   const parsedPost = parsePostFromApi(post);
