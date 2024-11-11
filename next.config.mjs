@@ -11,7 +11,8 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "picsum.photos",
+        hostname: "utfs.io",
+        pathname: "/a/oqi3glmmqm/**",
       },
     ],
   },
