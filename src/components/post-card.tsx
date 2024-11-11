@@ -42,7 +42,7 @@ export async function PostCard({
         </CardContent>
         <CardFooter>
           <Button variant="link" asChild>
-            <ViewTransitionLink href={`/posts/${slug}`}>
+            <ViewTransitionLink href={`/posts/${slug}`} prefetch>
               {t("read_more")}
             </ViewTransitionLink>
           </Button>
