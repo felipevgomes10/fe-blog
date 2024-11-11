@@ -24,15 +24,19 @@ export function Markdown({ content }: Readonly<MarkdownProps>) {
             language: "ts",
           });
 
-          const codeWithLines = value
-            .split("\n")
-            .map((line, index) => createLine(line, index))
-            .join("\n");
+          const lines = value.split("\n");
+          let codeWithLinesNumbers = lines;
+
+          if (codeWithLinesNumbers.length > 1) {
+            codeWithLinesNumbers = codeWithLinesNumbers.map(createLine);
+          }
 
           return (
             <code
               {...rest}
-              dangerouslySetInnerHTML={{ __html: codeWithLines }}
+              dangerouslySetInnerHTML={{
+                __html: codeWithLinesNumbers.join("\n"),
+              }}
             />
           );
         },
