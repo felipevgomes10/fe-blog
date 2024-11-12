@@ -6,6 +6,7 @@ import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
 import { twMerge } from "tailwind-merge";
+import { CopyButton } from "./copy-button";
 
 type MarkdownProps = {
   content: Post["content"];
@@ -50,10 +51,13 @@ export function Markdown({ content }: Readonly<MarkdownProps>) {
           const codeWithLinesNumbers = lines.map(createLine).join("\n");
 
           return (
-            <code
-              {...rest}
-              dangerouslySetInnerHTML={{ __html: codeWithLinesNumbers }}
-            />
+            <div className="relative">
+              <CopyButton text={children as string} />
+              <code
+                {...rest}
+                dangerouslySetInnerHTML={{ __html: codeWithLinesNumbers }}
+              />
+            </div>
           );
         },
       }}
