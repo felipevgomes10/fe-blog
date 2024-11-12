@@ -1,7 +1,7 @@
 import { Article } from "@/components/article";
 import { getPost } from "@/data/get-post";
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 
 type Params = {
   locale: string;
@@ -44,5 +44,7 @@ export async function generateStaticParams() {
 export default function Post({
   params: { locale, slug },
 }: Readonly<PostProps>) {
+  unstable_setRequestLocale(locale);
+
   return <Article slug={slug} locale={locale} />;
 }
