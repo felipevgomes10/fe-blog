@@ -1,5 +1,6 @@
 import { Article } from "@/components/article";
 import { getPost } from "@/data/get-post";
+import { getPosts } from "@/data/get-posts";
 import type { Metadata } from "next";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 
@@ -38,7 +39,9 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  return [];
+  const posts = await getPosts();
+
+  return posts.map(({ slug }) => ({ params: { slug } }));
 }
 
 export default function Post({
