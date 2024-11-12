@@ -7,11 +7,7 @@ import { Themes } from "@/contexts/theme-provider.types";
 import { supportedLocales } from "@/i18n/supported-locales";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
-import {
-  getMessages,
-  getTranslations,
-  unstable_setRequestLocale,
-} from "next-intl/server";
+import { getMessages, getTranslations } from "next-intl/server";
 import { Inter } from "next/font/google";
 
 import "../globals.css";
@@ -46,8 +42,6 @@ export default async function RootLayout({
   children,
   params: { locale },
 }: Readonly<RootLayoutProps>) {
-  unstable_setRequestLocale(locale);
-
   const messages = await getMessages();
 
   return (

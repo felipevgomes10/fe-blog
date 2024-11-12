@@ -1,5 +1,5 @@
 import { getPost } from "@/data/get-post";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { Markdown } from "./markdown";
 import { PageNotFound } from "./page-not-found";
@@ -10,8 +10,6 @@ type ArticleProps = {
 };
 
 export async function Article({ slug, locale }: Readonly<ArticleProps>) {
-  unstable_setRequestLocale(locale);
-
   const [t, post] = await Promise.all([
     getTranslations({ locale, namespace: "article.not_found" }),
     getPost(slug),
