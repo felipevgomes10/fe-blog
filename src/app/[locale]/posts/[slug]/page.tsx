@@ -37,10 +37,6 @@ export async function generateMetadata({
   };
 }
 
-export async function generateStaticParams() {
-  return [];
-}
-
 export default function Post({
   params: { locale, slug },
 }: Readonly<PostProps>) {
