@@ -13,6 +13,9 @@ export async function getPost(slug: string) {
 
   const response = await api(
     `${env.server.GITHUB_API_URL}/${locale}/${slug}.md`,
+    {
+      cache: "no-store",
+    },
   );
 
   if (response.status === 404) return null;
