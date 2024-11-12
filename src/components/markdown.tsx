@@ -42,7 +42,7 @@ export function Markdown({ content }: Readonly<MarkdownProps>) {
                   rest.className,
                   "rounded-sm bg-amber-400 px-1 py-0.5 text-slate-800 before:hidden after:hidden",
                 )}
-                dangerouslySetInnerHTML={{ __html: value }}
+                dangerouslySetInnerHTML={{ __html: children as string }}
               />
             );
           }
