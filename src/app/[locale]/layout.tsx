@@ -1,4 +1,5 @@
 import { AppHeader } from "@/components/app-header";
+import { Footer } from "@/components/footer";
 import { Toaster } from "@/components/ui/sonner";
 import { ViewTransition } from "@/components/view-transition";
 import { ThemeProvider } from "@/contexts/theme-provider";
@@ -60,9 +61,10 @@ export default async function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <div className="grid grid-rows-[max-content_1fr] gap-4 p-6 min-h-dvh">
+              <div className="grid min-h-dvh grid-rows-[max-content_1fr] gap-4 p-6">
                 <AppHeader />
                 <main>{children}</main>
+                <Footer />
               </div>
               <Toaster richColors closeButton />
             </ThemeProvider>
