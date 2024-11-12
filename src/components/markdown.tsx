@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
+import { twMerge } from "tailwind-merge";
 
 type MarkdownProps = {
   content: Post["content"];
@@ -32,18 +33,26 @@ export function Markdown({ content }: Readonly<MarkdownProps>) {
           });
 
           const lines = value.split("\n");
-          let codeWithLinesNumbers = lines;
 
-          if (codeWithLinesNumbers.length > 1) {
-            codeWithLinesNumbers = codeWithLinesNumbers.map(createLine);
+          if (lines.length === 1) {
+            return (
+              <code
+                {...rest}
+                className={twMerge(
+                  rest.className,
+                  "rounded-sm bg-amber-400 px-1 py-0.5 text-slate-800 before:hidden after:hidden",
+                )}
+                dangerouslySetInnerHTML={{ __html: value }}
+              />
+            );
           }
+
+          const codeWithLinesNumbers = lines.map(createLine).join("\n");
 
           return (
             <code
               {...rest}
-              dangerouslySetInnerHTML={{
-                __html: codeWithLinesNumbers.join("\n"),
-              }}
+              dangerouslySetInnerHTML={{ __html: codeWithLinesNumbers }}
             />
           );
         },
