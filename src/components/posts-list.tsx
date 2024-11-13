@@ -40,6 +40,7 @@ export function PostsList({ posts }: Readonly<PostsListProps>) {
     <section className="m-auto flex h-full w-full max-w-screen-xl flex-col gap-4">
       <div className="relative max-w-96">
         <Input
+          defaultValue={q}
           placeholder={t("search_placeholder")}
           ref={inputRef}
           onChange={handleSearch}
