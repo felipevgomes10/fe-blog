@@ -1,11 +1,12 @@
 import { PostCard } from "@/components/post-card";
 import { getPosts } from "@/data/get-posts";
+import type { SupportedLocale } from "@/i18n/supported-locales";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import React from "react";
 
 type HomeProps = {
   params: {
-    locale: string;
+    locale: SupportedLocale;
   };
 };
 
@@ -16,7 +17,7 @@ export default async function Home({
 
   const [t, posts] = await Promise.all([
     getTranslations({ locale, namespace: "articles_list" }),
-    getPosts(),
+    getPosts(locale),
   ]);
 
   if (!posts.length) {

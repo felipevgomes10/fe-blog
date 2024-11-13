@@ -34,6 +34,8 @@ export async function generateMetadata({
   };
 }
 
+export const revalidate = 3600; // Every hour
+
 export function generateStaticParams() {
   return supportedLocales.map((locale) => ({ locale }));
 }
