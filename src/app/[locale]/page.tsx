@@ -2,6 +2,7 @@ import { PostsList } from "@/components/posts-list";
 import { getPosts } from "@/data/get-posts";
 import type { SupportedLocale } from "@/i18n/supported-locales";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { Suspense } from "react";
 
 type HomeProps = {
   params: {
@@ -27,5 +28,9 @@ export default async function Home({
     );
   }
 
-  return <PostsList posts={posts} />;
+  return (
+    <Suspense>
+      <PostsList posts={posts} />
+    </Suspense>
+  );
 }
