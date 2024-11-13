@@ -1,8 +1,7 @@
-import { PostCard } from "@/components/post-card";
+import { PostsList } from "@/components/posts-list";
 import { getPosts } from "@/data/get-posts";
 import type { SupportedLocale } from "@/i18n/supported-locales";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
-import React from "react";
 
 type HomeProps = {
   params: {
@@ -16,7 +15,7 @@ export default async function Home({
   unstable_setRequestLocale(locale);
 
   const [t, posts] = await Promise.all([
-    getTranslations({ locale, namespace: "articles_list" }),
+    getTranslations({ locale, namespace: "posts_list" }),
     getPosts(locale),
   ]);
 
@@ -28,18 +27,5 @@ export default async function Home({
     );
   }
 
-  return (
-    <section className="m-auto flex h-full w-full max-w-screen-xl flex-col gap-4">
-      {React.Children.toArray(
-        posts.map(({ slug, title, description, thumbnail }) => (
-          <PostCard
-            slug={slug}
-            title={title}
-            description={description}
-            thumbnail={thumbnail}
-          />
-        )),
-      )}
-    </section>
-  );
+  return <PostsList posts={posts} />;
 }

@@ -21,7 +21,8 @@
   "app_header": {
     "title": "The Frontend Blog"
   },
-  "articles_list": {
+  "posts_list": {
+    "search_placeholder": "Search articles",
     "empty": "No articles found"
   },
   "article": {

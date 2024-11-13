@@ -1,4 +1,6 @@
-import { getTranslations } from "next-intl/server";
+"use client";
+
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import {
@@ -18,13 +20,13 @@ type PostCardProps = {
   thumbnail?: string;
 };
 
-export async function PostCard({
+export function PostCard({
   slug,
   title,
   description,
   thumbnail,
 }: Readonly<PostCardProps>) {
-  const t = await getTranslations("post_card");
+  const t = useTranslations("post_card");
 
   return (
     <Card className="flex flex-col items-center justify-start overflow-hidden transition-all hover:-translate-y-1 hover:border-accent-foreground hover:shadow-md md:flex-row">
