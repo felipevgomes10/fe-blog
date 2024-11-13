@@ -23,7 +23,7 @@ export default function LocaleSwitcher() {
 
   function handleValueChange(value: string) {
     startTransition(() => {
-      router.replace(pathname.replace(locale, value));
+      router.replace(pathname.replace(locale, value), { scroll: false });
     });
   }
 

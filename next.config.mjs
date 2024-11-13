@@ -16,6 +16,9 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    scrollRestoration: true,
+  },
 };
 
 export default withNextIntl(nextConfig);
