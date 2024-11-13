@@ -39,7 +39,7 @@ export async function Article({ slug, locale }: Readonly<ArticleProps>) {
         </div>
       )}
       <div
-        className="m-auto min-h-screen max-w-max rounded-md bg-background sm:p-6 data-[translate=true]:sm:max-w-[95%] data-[translate=true]:sm:-translate-y-52 lg:data-[translate=true]:max-w-max lg:data-[translate=true]:p-8"
+        className="m-auto min-h-screen max-w-max rounded-md bg-background sm:p-6 data-[translate=true]:sm:max-w-[95%] data-[translate=true]:sm:-translate-y-52 lg:data-[translate=true]:max-w-max lg:data-[translate=true]:p-12"
         data-translate={!!post.thumbnail}
       >
         <article className="prose prose-slate dark:prose-invert lg:prose-xl">
