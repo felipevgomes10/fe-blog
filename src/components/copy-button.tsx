@@ -23,8 +23,8 @@ export function CopyButton({ text }: Readonly<CopyButtonProps>) {
 
   return (
     <Button
-      className="absolute right-1 top-1"
-      variant="ghost"
+      className="absolute right-6 top-3"
+      variant="secondary"
       size="sm"
       onClick={copyText}
     >

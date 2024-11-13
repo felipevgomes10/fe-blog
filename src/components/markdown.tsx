@@ -2,15 +2,22 @@ import { hljs } from "@/lib/highlight";
 import { createLine } from "@/utils/create-line/create-line";
 import type { Post } from "@/utils/parse-post-from-api/parse-post-from-api";
 import ReactMarkdown from "react-markdown";
+import { twMerge } from "tailwind-merge";
+import { z } from "zod";
+import { CopyButton } from "./copy-button";
 
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
-import { twMerge } from "tailwind-merge";
-import { CopyButton } from "./copy-button";
 
 type MarkdownProps = {
   content: Post["content"];
 };
+
+const preTagSchema = z.object({
+  props: z.object({
+    children: z.string(),
+  }),
+});
 
 export function Markdown({ content }: Readonly<MarkdownProps>) {
   return (
@@ -18,12 +25,23 @@ export function Markdown({ content }: Readonly<MarkdownProps>) {
       rehypePlugins={[rehypeRaw, rehypeSanitize]}
       components={{
         pre: (props) => {
-          const { node, ...rest } = props;
+          const { node, children, ...rest } = props;
+          const { data, success } = preTagSchema.safeParse(children);
+
+          let text = "";
+
+          if (success) text = data.props.children;
+
           return (
-            <pre
-              className="mx-auto w-[350px] max-w-full sm:w-[500px] md:w-screen"
-              {...rest}
-            />
+            <div className="relative">
+              <CopyButton text={text} />
+              <pre
+                className="mx-auto w-[350px] max-w-full sm:w-[500px] md:w-screen"
+                {...rest}
+              >
+                {children}
+              </pre>
+            </div>
           );
         },
         code: (props) => {
@@ -51,13 +69,10 @@ export function Markdown({ content }: Readonly<MarkdownProps>) {
           const codeWithLinesNumbers = lines.map(createLine).join("\n");
 
           return (
-            <div className="relative">
-              <CopyButton text={children as string} />
-              <code
-                {...rest}
-                dangerouslySetInnerHTML={{ __html: codeWithLinesNumbers }}
-              />
-            </div>
+            <code
+              {...rest}
+              dangerouslySetInnerHTML={{ __html: codeWithLinesNumbers }}
+            />
           );
         },
       }}
