@@ -51,12 +51,9 @@ export function Markdown({ content }: Readonly<MarkdownProps>) {
           if (success) text = data.props.children;
 
           return (
-            <div className="relative">
+            <div className="relative mx-auto w-[290px] max-w-full sm:w-[500px] md:w-screen">
               <CopyButton text={text} />
-              <pre
-                className="mx-auto w-[350px] max-w-full sm:w-[500px] md:w-screen"
-                {...rest}
-              >
+              <pre className="" {...rest}>
                 {children}
               </pre>
             </div>
