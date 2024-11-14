@@ -35,6 +35,11 @@
   "post_card": {
     "read_more": "Read more"
   },
+  "about_me": {
+    "link": "About me",
+    "bio": "I'm a Javacript developer, focused on React and Node.",
+    "bio_2": "Focused on high performance and UX web applications built with JavaScript and TypeScript, using React and Node.js."
+  },
   "toast": {
     "success": "Code copied to clipboard",
     "error": "Failed to copy code to clipboard"

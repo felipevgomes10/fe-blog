@@ -35,6 +35,11 @@
   "post_card": {
     "read_more": "Leia mais"
   },
+  "about_me": {
+    "link": "Sobre mim",
+    "bio": "Sou um desenvolvedor Javacript, focado em React e Node.",
+    "bio_2": "Focado em aplições web de alta performance e UX construídas com JavaScript e TypeScript, utilizando React e Node.js."
+  },
   "toast": {
     "success": "Código copiado para a área de transferência",
     "error": "Falha ao copiar o código para a área de transferência"

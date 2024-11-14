@@ -4,12 +4,13 @@ import { usePathname } from "@/i18n/navigation";
 import { ChevronLeft } from "lucide-react";
 import { useTranslations } from "next-intl";
 import LocaleSwitcher from "./locale-switcher";
+import { Button } from "./ui/button";
 import { ThemeToggle } from "./ui/theme-toggle";
 import { ViewTransitionLink } from "./view-transition-link";
 
 export function AppHeader() {
   const pathname = usePathname();
-  const t = useTranslations("app_header");
+  const t = useTranslations();
 
   return (
     <div className="app-header sticky top-0 z-50 bg-background">
@@ -25,9 +26,15 @@ export function AppHeader() {
             className="app-header-icon h-6 w-6 data-[hidden=true]:hidden"
             data-hidden={pathname === "/"}
           />
-          <span className="app-header-text">{t("title")}</span>
+          <span className="app-header-text">{t("app_header.title")}</span>
         </ViewTransitionLink>
         <div className="flex w-full gap-4 sm:w-auto">
+          <Button variant="ghost" asChild>
+            <ViewTransitionLink href="/about-me">
+              {t("about_me.link")}
+            </ViewTransitionLink>
+          </Button>
+
           <LocaleSwitcher />
           <ThemeToggle />
         </div>
