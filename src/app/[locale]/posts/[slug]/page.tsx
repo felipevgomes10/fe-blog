@@ -24,20 +24,15 @@ type PostProps = {
 export const revalidate = 3600; // Every hour
 
 export async function generateStaticParams() {
-  const postsMap = await Promise.all(
-    supportedLocales.map(async (locale) => ({
-      locale,
-      posts: await getPosts(locale),
-    })),
-  );
+  const posts = await getPosts();
 
-  const params = postsMap.flatMap(({ locale, posts }) => {
-    const postByLocaleParams = posts.map((post) => ({
+  const params = posts.flatMap(({ slug }) => {
+    const postByLocales = supportedLocales.map((locale) => ({
       locale,
-      slug: post.slug,
+      slug,
     }));
 
-    return postByLocaleParams;
+    return postByLocales;
   });
 
   return params;
