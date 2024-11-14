@@ -11,7 +11,7 @@ export async function Footer({ locale }: Readonly<FooterProps>) {
   const t = await getTranslations({ locale, namespace: "about_me" });
 
   return (
-    <footer className="flex flex-col items-center justify-center gap-3">
+    <footer className="flex flex-col items-center justify-center gap-3 pb-4">
       <div className="flex items-center justify-center gap-4">
         <a
           href="https://github.com/felipevgomes10"

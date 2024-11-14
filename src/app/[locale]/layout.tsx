@@ -58,7 +58,7 @@ export default async function RootLayout({
               disableTransitionOnChange
             >
               <AppHeader />
-              <div className="grid min-h-dvh grid-rows-[max-content_1fr] gap-4 p-6">
+              <div className="grid min-h-dvh grid-rows-[max-content_1fr] gap-4 px-6">
                 <main>{children}</main>
                 <Footer locale={locale} />
               </div>
