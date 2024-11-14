@@ -1,3 +1,4 @@
+import { Markdown } from "@/components/markdown";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import {
   Card,
@@ -8,9 +9,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import type { SupportedLocale } from "@/i18n/supported-locales";
+import { getAboutMe } from "@/data/get-about-me";
+import {
+  supportedLocales,
+  type SupportedLocale,
+} from "@/i18n/supported-locales";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
 type AboutMeProps = {
   params: {
@@ -20,10 +26,23 @@ type AboutMeProps = {
 
 const logos = ["/js.svg", "/ts.svg", "/node.svg", "/react.svg"] as const;
 
+export const revalidate = 3600; // Every hour
+
+export async function generateStaticParams() {
+  const params = supportedLocales.map((locale) => ({ locale }));
+
+  return params;
+}
+
 export default async function Page({
   params: { locale },
 }: Readonly<AboutMeProps>) {
-  const t = await getTranslations({ locale, namespace: "about_me" });
+  const [t, aboutMe] = await Promise.all([
+    getTranslations({ locale, namespace: "about_me" }),
+    getAboutMe(),
+  ]);
+
+  if (!aboutMe) return redirect(`/${locale}/not-found`);
 
   return (
     <section className="grid grid-cols-[24rem_1fr]">
@@ -31,10 +50,7 @@ export default async function Page({
         <Card className="sticky top-[75px]">
           <CardHeader className="flex items-center">
             <Avatar className="h-24 w-24">
-              <AvatarImage
-                className="object-cover"
-                src="https://utfs.io/a/oqi3glmmqm/WfWc1HX19bacCQvsmLTaX5dEIymQOcWnfbr6aY3zvGT91utx"
-              />
+              <AvatarImage className="object-cover" src={aboutMe.profile} />
             </Avatar>
             <CardTitle>Felipe Gomes</CardTitle>
             <CardDescription className="text-center">
@@ -52,7 +68,9 @@ export default async function Page({
           </CardFooter>
         </Card>
       </aside>
-      <div></div>
+      <div>
+        <Markdown content={aboutMe.content} />
+      </div>
     </section>
   );
 }

@@ -1,4 +1,5 @@
 import { api } from "@/lib/api";
+import { getMarkdownMetadata } from "../get-markdown-metadata/get-markdown-metadata";
 
 export type APIPost = {
   name: string;
@@ -43,10 +44,7 @@ function getPostSlug(name: string): string {
 }
 
 function getPostInformation(content: string): Omit<Post, "slug" | "content"> {
-  const matchCommentRegexp = /<!--\s*([\s\S]*?)\s*-->/g;
-  const matches = Array.from(content.matchAll(matchCommentRegexp));
-
-  const postInformation = matches.map((match) => match.at(1)!.trim());
+  const postInformation = getMarkdownMetadata(content);
   const [title, description, thumbnail] = postInformation as PostInfo;
 
   return { title, description, thumbnail };

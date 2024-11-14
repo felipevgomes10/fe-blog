@@ -9,7 +9,9 @@ import {
 } from "@/utils/parse-post-from-api/parse-post-from-api";
 
 export async function getPosts(locale: SupportedLocale = defaultLocale) {
-  const response = await api(`${env.server.GITHUB_API_URL}/${locale}`);
+  const response = await api(
+    `${env.server.GITHUB_API_URL}/fe-blog-posts/contents/posts/${locale}`,
+  );
   const posts: APIPost[] = await response.json();
 
   return Promise.all(posts.map(parsePostFromApi));

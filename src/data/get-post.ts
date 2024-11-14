@@ -12,7 +12,7 @@ export async function getPost(slug: string) {
   const locale = await getLocale();
 
   const response = await api(
-    `${env.server.GITHUB_API_URL}/${locale}/${slug}.md`,
+    `${env.server.GITHUB_API_URL}/fe-blog-posts/contents/posts/${locale}/${slug}.md`,
   );
 
   if (response.status === 404) return null;
