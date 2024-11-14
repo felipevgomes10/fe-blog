@@ -45,9 +45,9 @@ export default async function Page({
   if (!aboutMe) return redirect(`/${locale}/not-found`);
 
   return (
-    <section className="grid grid-cols-[24rem_1fr]">
-      <aside className="px-12 py-6">
-        <Card className="sticky top-[75px]">
+    <section className="m-auto grid max-w-screen-xl grid-cols-[max-content_1fr] gap-10">
+      <aside>
+        <Card className="sticky top-[75px] max-w-72">
           <CardHeader className="flex items-center">
             <Avatar className="h-24 w-24">
               <AvatarImage className="object-cover" src={aboutMe.profile} />
@@ -68,7 +68,7 @@ export default async function Page({
           </CardFooter>
         </Card>
       </aside>
-      <div>
+      <div className="prose prose-slate dark:prose-invert lg:prose-xl">
         <Markdown content={aboutMe.content} />
       </div>
     </section>
