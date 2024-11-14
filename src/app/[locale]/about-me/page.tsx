@@ -33,7 +33,7 @@ export default async function Page({
   if (!aboutMe) return redirect(`/${locale}/not-found`);
 
   return (
-    <section className="m-auto grid max-w-screen-xl grid-cols-[max-content_1fr] gap-10">
+    <section className="m-auto grid max-w-screen-xl gap-10 md:grid-cols-[max-content_1fr]">
       <aside>
         <ProfileCard profile={aboutMe.profile} />
       </aside>

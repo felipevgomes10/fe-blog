@@ -47,7 +47,7 @@ export function ProfileCard({ profile }: Readonly<ProfileCardProps>) {
 
   return (
     <Card
-      className="sticky top-[80px] z-50 max-w-72 shadow-md data-[hovered=true]:shadow-xl"
+      className="top-[100px] z-50 shadow-md data-[hovered=true]:shadow-xl md:sticky md:max-w-72"
       data-hovered={isHovered}
       onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}

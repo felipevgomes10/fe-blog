@@ -57,10 +57,10 @@ export default async function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
+              <AppHeader />
               <div className="grid min-h-dvh grid-rows-[max-content_1fr] gap-4 p-6">
-                <AppHeader />
                 <main>{children}</main>
-                <Footer />
+                <Footer locale={locale} />
               </div>
               <Toaster richColors closeButton />
             </ThemeProvider>
