@@ -5,7 +5,7 @@ import {
   supportedLocales,
   type SupportedLocale,
 } from "@/i18n/supported-locales";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { redirect } from "next/navigation";
 
 type AboutMeProps = {
@@ -25,6 +25,8 @@ export async function generateStaticParams() {
 export default async function Page({
   params: { locale },
 }: Readonly<AboutMeProps>) {
+  unstable_setRequestLocale(locale);
+
   const [t, aboutMe] = await Promise.all([
     getTranslations({ locale, namespace: "about_me" }),
     getAboutMe(),
