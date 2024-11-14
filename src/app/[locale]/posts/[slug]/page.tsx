@@ -1,5 +1,6 @@
 import { Markdown } from "@/components/markdown";
 import { PageNotFound } from "@/components/page-not-found";
+import { ScrollProgress } from "@/components/scroll-progress";
 import { getPost } from "@/data/get-post";
 import { getPosts } from "@/data/get-posts";
 import {
@@ -83,6 +84,7 @@ export default async function Post({
 
   return (
     <div className="flex flex-col gap-8">
+      <ScrollProgress />
       {post.thumbnail && (
         <div className="relative h-80 w-full overflow-hidden rounded-md md:h-96 lg:h-[500px]">
           <Image
