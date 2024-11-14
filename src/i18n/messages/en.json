@@ -25,7 +25,7 @@
     "search_placeholder": "Search articles",
     "empty": "No articles found"
   },
-  "article": {
+  "post": {
     "not_found": {
       "title": "Article not found",
       "message": "The article you are looking for does not exist in this language",
