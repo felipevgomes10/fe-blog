@@ -1,9 +1,10 @@
 "use client";
 
+import { usePathname } from "@/i18n/navigation";
 import type { Post } from "@/utils/parse-post-from-api/parse-post-from-api";
 import { Search } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useDeferredValue, useMemo, useRef } from "react";
 import { PostCard } from "./post-card";
 import { Input } from "./ui/input";
