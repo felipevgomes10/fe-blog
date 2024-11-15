@@ -47,7 +47,7 @@ export function ProfileCard({ profile }: Readonly<ProfileCardProps>) {
 
   return (
     <Card
-      className="top-[100px] z-50 mt-1 shadow-md data-[hovered=true]:shadow-xl md:sticky md:max-w-72"
+      className="relative top-2 mt-1 shadow-md data-[hovered=true]:shadow-xl sm:top-[100px] md:sticky md:z-50 md:max-w-72"
       data-hovered={isHovered}
       onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
