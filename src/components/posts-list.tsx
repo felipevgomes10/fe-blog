@@ -38,7 +38,7 @@ export function PostsList({ posts }: Readonly<PostsListProps>) {
   }
 
   return (
-    <section className="m-auto flex h-full w-full max-w-screen-xl flex-col gap-4">
+    <section className="m-auto flex h-full w-full max-w-screen-xl flex-col gap-4 pt-1">
       <div className="relative max-w-96">
         <Input
           defaultValue={q}
