@@ -31,6 +31,7 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("description"),
+    keywords: ["Next.js", "React", "Javascript", "Typescript", "Node"],
   };
 }
 

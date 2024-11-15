@@ -4,6 +4,7 @@ const envSchema = z.object({
   server: z.object({
     GITHUB_API_URL: z.string(),
     GITHUB_TOKEN: z.string(),
+    VERCEL_URL: z.string(),
   }),
 });
 

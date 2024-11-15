@@ -3,6 +3,7 @@ import { PageNotFound } from "@/components/page-not-found";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { getPost } from "@/data/get-post";
 import { getPosts } from "@/data/get-posts";
+import { env } from "@/env/env";
 import {
   supportedLocales,
   type SupportedLocale,
@@ -56,9 +57,18 @@ export async function generateMetadata({
     };
   }
 
+  const title = `${t("metadata.title")} - ${post.title}`;
+  const description = post.description;
+
   return {
-    title: `${t("metadata.title")} - ${post.title}`,
-    description: post.description,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: post.thumbnail,
+      url: `${env.server.VERCEL_URL}/${locale}/posts/${slug}`,
+    },
   };
 }
 
