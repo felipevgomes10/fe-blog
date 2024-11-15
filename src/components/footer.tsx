@@ -1,14 +1,14 @@
+"use client";
+
+import { usePathname } from "@/i18n/navigation";
 import { Linkedin } from "lucide-react";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import { GithubIcon } from "./github-icon";
 import { ViewTransitionLink } from "./view-transition-link";
 
-type FooterProps = {
-  locale: string;
-};
-
-export async function Footer({ locale }: Readonly<FooterProps>) {
-  const t = await getTranslations({ locale, namespace: "about_me" });
+export function Footer() {
+  const t = useTranslations("about_me");
+  const pathname = usePathname();
 
   return (
     <footer className="flex flex-col items-center justify-center gap-3 pb-4">
@@ -32,9 +32,13 @@ export async function Footer({ locale }: Readonly<FooterProps>) {
         <span className="text-xs text-secondary-foreground opacity-50">
           Felipe Gomes
         </span>
-        <span className="text-xs text-secondary-foreground underline opacity-50">
-          <ViewTransitionLink href="/about-me">{t("link")}</ViewTransitionLink>
-        </span>
+        {pathname !== "/about-me" && (
+          <span className="text-xs text-secondary-foreground underline opacity-50">
+            <ViewTransitionLink href="/about-me">
+              {t("link")}
+            </ViewTransitionLink>
+          </span>
+        )}
       </div>
     </footer>
   );
