@@ -18,7 +18,7 @@ type ProfileCardProps = {
   profile: string;
 };
 
-const logos = ["/js.svg", "/ts.svg", "/node.svg", "/react.svg"] as const;
+const logos = ["/js.svg", "/ts.svg", "/react.svg", "/node.svg"] as const;
 
 export function ProfileCard({ profile }: Readonly<ProfileCardProps>) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -74,7 +74,14 @@ export function ProfileCard({ profile }: Readonly<ProfileCardProps>) {
       </CardContent>
       <CardFooter className="flex items-center justify-center gap-4">
         {logos.map((logo) => (
-          <Image key={logo} src={logo} alt={logo} width={20} height={20} />
+          <Image
+            className="rounded-sm"
+            key={logo}
+            src={logo}
+            alt={logo}
+            width={20}
+            height={20}
+          />
         ))}
       </CardFooter>
     </Card>
