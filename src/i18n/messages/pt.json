@@ -37,8 +37,8 @@
   },
   "about_me": {
     "link": "Sobre mim",
-    "bio": "Sou um desenvolvedor Javacript, focado em React e Node.",
-    "bio_2": "Focado em aplições web de alta performance e UX construídas com JavaScript e TypeScript, utilizando React e Node.js."
+    "bio": "Sou um desenvolvedor Javascript, focado em React e Node.",
+    "bio_2": "Focado em aplições web de alta performance e UX construídas com Javascript e Typescript, utilizando React e Node."
   },
   "toast": {
     "success": "Código copiado para a área de transferência",
