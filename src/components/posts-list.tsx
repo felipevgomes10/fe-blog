@@ -17,7 +17,7 @@ export function PostsList({ posts }: Readonly<PostsListProps>) {
   const filteredPosts = useMemo(() => filterPosts({ posts, q }), [posts, q]);
 
   return (
-    <section className="m-auto flex h-full w-full max-w-screen-xl flex-col gap-4 pt-1">
+    <section className="m-auto flex h-full min-h-[calc(100dvh_-_208px)] w-full max-w-screen-xl flex-col gap-4 pt-1">
       {filteredPosts.map(({ slug, title, description, thumbnail }) => (
         <PostCard
           key={slug}
