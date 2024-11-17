@@ -1,56 +1,23 @@
 "use client";
 
-import { usePathname } from "@/i18n/navigation";
+import { filterPosts } from "@/utils/filter-posts/filter-posts";
 import type { Post } from "@/utils/parse-post-from-api/parse-post-from-api";
-import { Search } from "lucide-react";
-import { useTranslations } from "next-intl";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useDeferredValue, useMemo, useRef } from "react";
+import { useSearchParams } from "next/navigation";
+import { useDeferredValue, useMemo } from "react";
 import { PostCard } from "./post-card";
-import { Input } from "./ui/input";
 
 type PostsListProps = {
   posts: Post[];
 };
 
 export function PostsList({ posts }: Readonly<PostsListProps>) {
-  const t = useTranslations("posts_list");
-
-  const inputRef = useRef<HTMLInputElement>(null);
-
   const search = useSearchParams();
   const q = useDeferredValue(search.get("q") || "");
 
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const filteredPosts = useMemo(() => {
-    return posts.filter(({ title }) => {
-      return title.toLowerCase().includes(q.toLowerCase());
-    });
-  }, [posts, q]);
-
-  function handleSearch() {
-    const search = new URLSearchParams();
-    search.set("q", inputRef.current?.value || "");
-
-    router.push(`${pathname}?${search.toString()}`);
-  }
+  const filteredPosts = useMemo(() => filterPosts({ posts, q }), [posts, q]);
 
   return (
     <section className="m-auto flex h-full w-full max-w-screen-xl flex-col gap-4 pt-1">
-      <div className="relative max-w-96">
-        <Input
-          defaultValue={q}
-          placeholder={t("search_placeholder")}
-          ref={inputRef}
-          onChange={handleSearch}
-        />
-        <Search
-          size={15}
-          className="pointer-events-none absolute right-3 top-3 opacity-50"
-        />
-      </div>
       {filteredPosts.map(({ slug, title, description, thumbnail }) => (
         <PostCard
           key={slug}

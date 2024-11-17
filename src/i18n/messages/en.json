@@ -23,6 +23,7 @@
   },
   "posts_list": {
     "search_placeholder": "Search articles",
+    "search_group": "Suggestions",
     "empty": "No articles found"
   },
   "post": {

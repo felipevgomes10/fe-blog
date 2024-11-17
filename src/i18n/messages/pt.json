@@ -23,6 +23,7 @@
   },
   "posts_list": {
     "search_placeholder": "Pesquisar artigos",
+    "search_group": "Sugestões",
     "empty": "Nenhum artigo encontrado"
   },
   "post": {
