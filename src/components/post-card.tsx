@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import { Button } from "./ui/button";
 import {
   Card,
@@ -27,6 +28,7 @@ export function PostCard({
   thumbnail,
 }: Readonly<PostCardProps>) {
   const t = useTranslations("post_card");
+  const search = useSearchParams();
 
   return (
     <Card className="flex flex-col items-center justify-start overflow-hidden transition-all hover:-translate-y-1 hover:border-accent-foreground hover:shadow-md md:flex-row">
@@ -44,7 +46,10 @@ export function PostCard({
         </CardContent>
         <CardFooter>
           <Button variant="link" asChild>
-            <ViewTransitionLink href={`/posts/${slug}`} prefetch>
+            <ViewTransitionLink
+              href={`/posts/${slug}?${search.toString()}`}
+              prefetch
+            >
               {t("read_more")}
             </ViewTransitionLink>
           </Button>
