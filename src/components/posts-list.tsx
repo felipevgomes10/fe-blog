@@ -26,7 +26,7 @@ export function PostsList({ posts }: Readonly<PostsListProps>) {
           {t("app_header.empty")} {":("}
         </p>
       )}
-      {q && (
+      {q && Boolean(filteredPosts.length) && (
         <p className="text-gray-500 dark:text-gray-400">
           {t("posts_list.search_results")} ({filteredPosts.length})
         </p>
