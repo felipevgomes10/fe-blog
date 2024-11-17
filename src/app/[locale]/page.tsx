@@ -22,8 +22,10 @@ export default async function Home({
 
   if (!posts.length) {
     return (
-      <section className="flex h-full w-full items-center justify-center">
-        <p className="text-center">{t("empty")}</p>
+      <section className="m-auto flex h-full min-h-[calc(100dvh_-_208px)] w-full max-w-screen-xl flex-col gap-4 pt-1">
+        <p className="m-auto text-gray-500 dark:text-gray-400">
+          {t("empty")} {":("}
+        </p>
       </section>
     );
   }
