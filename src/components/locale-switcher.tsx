@@ -7,14 +7,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { supportedLocales } from "@/i18n/supported-locales";
+import {
+  type SupportedLocale,
+  supportedLocales,
+} from "@/i18n/supported-locales";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import { useTransition } from "react";
 
 export default function LocaleSwitcher() {
   const t = useTranslations("locale_switcher");
-  const locale = useLocale() as (typeof supportedLocales)[number];
+  const locale = useLocale() as SupportedLocale;
 
   const router = useRouter();
   const pathname = usePathname();
