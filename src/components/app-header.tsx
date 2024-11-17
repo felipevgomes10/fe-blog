@@ -15,7 +15,9 @@ export async function AppHeader() {
   return (
     <div className="app-header sticky top-0 z-50 bg-background px-6 py-4">
       <nav className="m-auto flex w-full max-w-screen-xl flex-wrap items-center justify-start gap-4 py-4 sm:flex-nowrap">
-        <HomeLink />
+        <Suspense>
+          <HomeLink />
+        </Suspense>
         <div className="flex w-full gap-4 sm:w-auto">
           <Suspense>
             <Search postsPromise={postsPromise} />
