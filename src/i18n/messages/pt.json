@@ -25,7 +25,8 @@
     "empty": "Nenhum artigo encontrado"
   },
   "posts_list": {
-    "empty": "Nenhum artigo encontrado"
+    "empty": "Nenhum artigo encontrado",
+    "search_results": "Resultados da pesquisa"
   },
   "post": {
     "not_found": {

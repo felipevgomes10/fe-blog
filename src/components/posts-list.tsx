@@ -15,7 +15,7 @@ export function PostsList({ posts }: Readonly<PostsListProps>) {
   const search = useSearchParams();
   const q = useDeferredValue(search.get("q") || "");
 
-  const t = useTranslations("app_header");
+  const t = useTranslations();
 
   const filteredPosts = useMemo(() => filterPosts({ posts, q }), [posts, q]);
 
@@ -23,7 +23,12 @@ export function PostsList({ posts }: Readonly<PostsListProps>) {
     <section className="m-auto flex h-full min-h-[calc(100dvh_-_208px)] w-full max-w-screen-xl flex-col gap-4 pt-1">
       {!filteredPosts.length && (
         <p className="m-auto text-gray-500 dark:text-gray-400">
-          {t("empty")} {":("}
+          {t("app_header.empty")} {":("}
+        </p>
+      )}
+      {q && (
+        <p className="text-gray-500 dark:text-gray-400">
+          {t("posts_list.search_results")} ({filteredPosts.length})
         </p>
       )}
       {filteredPosts.map(({ slug, title, description, thumbnail }) => (

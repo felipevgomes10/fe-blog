@@ -25,7 +25,8 @@
     "empty": "No articles found"
   },
   "posts_list": {
-    "empty": "No articles found"
+    "empty": "No articles found",
+    "search_results": "Search results"
   },
   "post": {
     "not_found": {
