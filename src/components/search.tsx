@@ -64,7 +64,7 @@ export function Search({ postsPromise }: { postsPromise: Promise<any> }) {
     setOpen(false);
   }
 
-  function handleSearchIconClick() {
+  function handleCommandSearchOpen() {
     setOpen(true);
   }
 
@@ -99,6 +99,7 @@ export function Search({ postsPromise }: { postsPromise: Promise<any> }) {
           defaultValue={q}
           placeholder={t("search_placeholder")}
           ref={inputRef}
+          onFocus={pathname !== "/" ? handleCommandSearchOpen : undefined}
           onChange={handleSearch}
         />
         <SearchIcon
@@ -111,7 +112,7 @@ export function Search({ postsPromise }: { postsPromise: Promise<any> }) {
         className="block p-1 sm:hidden"
         variant="outline"
         size="icon"
-        onClick={handleSearchIconClick}
+        onClick={handleCommandSearchOpen}
       >
         <SearchIcon className="h-[1.2rem] w-[1.2rem]" />
         <span className="sr-only">{t("search_placeholder")}</span>
