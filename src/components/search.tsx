@@ -20,7 +20,7 @@ import { Input } from "./ui/input";
 import { ViewTransitionLink } from "./view-transition-link";
 
 export function Search({ postsPromise }: { postsPromise: Promise<any> }) {
-  const t = useTranslations("posts_list");
+  const t = useTranslations("app_header");
 
   const search = useSearchParams();
   const q = search.get("q") || "";
@@ -78,7 +78,7 @@ export function Search({ postsPromise }: { postsPromise: Promise<any> }) {
           placeholder={t("search_placeholder")}
         />
         <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandEmpty>{t("empty")}</CommandEmpty>
           <CommandGroup heading={t("search_group")}>
             {filteredPosts.map((post) => (
               <CommandItem key={post.slug}>

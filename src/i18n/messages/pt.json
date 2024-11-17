@@ -19,11 +19,12 @@
     "back": "Voltar para a página inicial"
   },
   "app_header": {
-    "title": "O Blog Frontend"
-  },
-  "posts_list": {
+    "title": "O Blog Frontend",
     "search_placeholder": "Pesquisar artigos",
     "search_group": "Sugestões",
+    "empty": "Nenhum artigo encontrado"
+  },
+  "posts_list": {
     "empty": "Nenhum artigo encontrado"
   },
   "post": {

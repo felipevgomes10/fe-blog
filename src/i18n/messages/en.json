@@ -19,11 +19,12 @@
     "back": "Go back home"
   },
   "app_header": {
-    "title": "The Frontend Blog"
-  },
-  "posts_list": {
+    "title": "The Frontend Blog",
     "search_placeholder": "Search articles",
     "search_group": "Suggestions",
+    "empty": "No articles found"
+  },
+  "posts_list": {
     "empty": "No articles found"
   },
   "post": {
