@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      screens: {
+        "carousel-md": "911px",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

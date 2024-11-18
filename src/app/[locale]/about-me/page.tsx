@@ -1,3 +1,4 @@
+import { CertificatesCarousel } from "@/components/certificates-carousel";
 import { Experiences } from "@/components/experiences";
 import { Markdown } from "@/components/markdown";
 import { ProfileCard } from "@/components/profile-card";
@@ -58,7 +59,7 @@ export default async function Page({
 }: Readonly<AboutMeProps>) {
   unstable_setRequestLocale(locale);
 
-  const [t, aboutMe, experiences] = await Promise.all([
+  const [t, aboutMe, myExperiences] = await Promise.all([
     getTranslations("about_me"),
     getAboutMe(),
     getExperiences(),
@@ -73,12 +74,19 @@ export default async function Page({
       </aside>
       <div className="prose prose-slate dark:prose-invert lg:prose-xl">
         <Markdown content={aboutMe.content} />
-        {experiences && (
+        {myExperiences?.experiences && myExperiences.experiences.length > 0 && (
           <div>
             <h2>{t("experience_title")}</h2>
-            <Experiences experiences={experiences} />
+            <Experiences experiences={myExperiences.experiences} />
           </div>
         )}
+        {myExperiences?.certificates &&
+          myExperiences.certificates.length > 0 && (
+            <div>
+              <h2>{t("certificates_title")}</h2>
+              <CertificatesCarousel certificates={myExperiences.certificates} />
+            </div>
+          )}
       </div>
     </section>
   );
