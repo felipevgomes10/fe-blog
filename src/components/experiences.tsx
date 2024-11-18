@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import { formatDate } from "@/utils/format-date/format-date";
 import type { Experience } from "@/utils/parse-experiences-from-api/parse-experiences-from-api";
 import { getLocale, getTranslations } from "next-intl/server";
@@ -42,26 +41,22 @@ export async function Experiences({ experiences }: Readonly<ExperiencesProps>) {
                 </div>
               </div>
 
-              <ul className="ml-8 flex list-disc flex-col gap-4">
-                {roles.map(
-                  ({ title, startDate, endDate, description }, index) => (
-                    <li
-                      className={cn(
-                        "relative after:absolute after:left-[-11.5px] after:top-[22px] after:inline-block after:h-[52px] after:w-px after:bg-accent-foreground after:opacity-50 lg:after:left-[-13.3px] lg:after:top-[26px] lg:after:h-[65px]",
-                        index === roles.length - 1 && "after:hidden",
-                      )}
-                      data-index={index}
-                    >
-                      <h5 className="text-base leading-none text-accent-foreground">
-                        {title}
-                      </h5>
-                      <span className="text-sm leading-none text-secondary-foreground opacity-50">
-                        {formatDate(startDate, locale)}
-                        {" - "}
-                        {endDate ? formatDate(endDate, locale) : t("now")}
-                      </span>
-                      <p>{description}</p>
-                    </li>
+              <ul className="ml-8 flex list-disc flex-col gap-2">
+                {React.Children.toArray(
+                  roles.map(
+                    ({ title, startDate, endDate, description }, index) => (
+                      <li>
+                        <h5 className="text-base leading-none text-accent-foreground">
+                          {title}
+                        </h5>
+                        <span className="text-sm leading-none text-secondary-foreground opacity-50">
+                          {formatDate(startDate, locale)}
+                          {" - "}
+                          {endDate ? formatDate(endDate, locale) : t("now")}
+                        </span>
+                        <p>{description}</p>
+                      </li>
+                    ),
                   ),
                 )}
               </ul>
