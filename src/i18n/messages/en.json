@@ -41,7 +41,9 @@
   "about_me": {
     "link": "About me",
     "bio": "I'm a Javascript developer, focused on React and Node.",
-    "bio_2": "Focused on high performance and UX web applications built with Javascript and Typescript, using React and Node."
+    "bio_2": "Focused on high performance and UX web applications built with Javascript and Typescript, using React and Node.",
+    "experience_title": "Experience",
+    "now": "Now"
   },
   "toast": {
     "success": "Code copied to clipboard",

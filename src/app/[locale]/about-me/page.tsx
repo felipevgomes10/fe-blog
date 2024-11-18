@@ -1,6 +1,8 @@
+import { Experiences } from "@/components/experiences";
 import { Markdown } from "@/components/markdown";
 import { ProfileCard } from "@/components/profile-card";
 import { getAboutMe } from "@/data/get-about-me";
+import { getExperiences } from "@/data/get-experiences";
 import { env } from "@/env/env";
 import {
   supportedLocales,
@@ -56,9 +58,10 @@ export default async function Page({
 }: Readonly<AboutMeProps>) {
   unstable_setRequestLocale(locale);
 
-  const [t, aboutMe] = await Promise.all([
-    getTranslations({ locale, namespace: "about_me" }),
+  const [t, aboutMe, experiences] = await Promise.all([
+    getTranslations("about_me"),
     getAboutMe(),
+    getExperiences(),
   ]);
 
   if (!aboutMe) return redirect(`/${locale}/not-found`);
@@ -70,6 +73,12 @@ export default async function Page({
       </aside>
       <div className="prose prose-slate dark:prose-invert lg:prose-xl">
         <Markdown content={aboutMe.content} />
+        {experiences && (
+          <div>
+            <h2>{t("experience_title")}</h2>
+            <Experiences experiences={experiences} />
+          </div>
+        )}
       </div>
     </section>
   );
