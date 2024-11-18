@@ -47,7 +47,7 @@ export async function Experiences({ experiences }: Readonly<ExperiencesProps>) {
                   ({ title, startDate, endDate, description }, index) => (
                     <li
                       className={cn(
-                        "relative after:absolute after:left-[-13.5px] after:top-[26px] after:inline-block after:h-[65px] after:w-px after:bg-accent-foreground after:opacity-50",
+                        "relative after:absolute after:left-[-11.5px] after:top-[22px] after:inline-block after:h-[52px] after:w-px after:bg-accent-foreground after:opacity-50 lg:after:left-[-13.3px] lg:after:top-[26px] lg:after:h-[65px]",
                         index === roles.length - 1 && "after:hidden",
                       )}
                       data-index={index}
