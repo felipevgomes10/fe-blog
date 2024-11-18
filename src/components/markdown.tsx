@@ -1,14 +1,13 @@
 import { hljs } from "@/lib/highlight";
+import { cn } from "@/lib/utils";
 import { createLine } from "@/utils/create-line/create-line";
 import type { Post } from "@/utils/parse-post-from-api/parse-post-from-api";
-import ReactMarkdown from "react-markdown";
-import { twMerge } from "tailwind-merge";
-import { z } from "zod";
-import { CopyButton } from "./copy-button";
-
 import { ExternalLink } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
+import { z } from "zod";
+import { CopyButton } from "./copy-button";
 
 type MarkdownProps = {
   content: Post["content"];
@@ -32,7 +31,7 @@ export function Markdown({ content }: Readonly<MarkdownProps>) {
             <a
               {...rest}
               target="_blank"
-              className={twMerge(
+              className={cn(
                 className,
                 "inline-flex items-center gap-1 p-0 leading-tight text-accent-foreground no-underline underline-offset-1 hover:underline",
               )}
@@ -72,7 +71,7 @@ export function Markdown({ content }: Readonly<MarkdownProps>) {
             return (
               <code
                 {...rest}
-                className={twMerge(
+                className={cn(
                   className,
                   "rounded-sm bg-amber-400 px-1 py-0.5 text-slate-800 before:hidden after:hidden",
                 )}
