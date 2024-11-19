@@ -109,7 +109,7 @@ export function Search({ postsPromise }: { postsPromise: Promise<any> }) {
       </div>
 
       <Button
-        className="block p-1 sm:hidden"
+        className="block px-2 py-1 sm:hidden"
         variant="outline"
         size="icon"
         onClick={handleCommandSearchOpen}
