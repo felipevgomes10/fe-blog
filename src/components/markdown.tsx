@@ -1,7 +1,7 @@
+import type { MappedPost } from "@/http/mappers/post-mapper/post-mapper";
 import { hljs } from "@/lib/highlight";
 import { cn } from "@/lib/utils";
 import { createLine } from "@/utils/create-line/create-line";
-import type { Post } from "@/utils/parse-post-from-api/parse-post-from-api";
 import { ExternalLink } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
@@ -10,7 +10,7 @@ import { z } from "zod";
 import { CopyButton } from "./copy-button";
 
 type MarkdownProps = {
-  content: Post["content"];
+  content: MappedPost["content"];
 };
 
 const preTagSchema = z.object({

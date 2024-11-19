@@ -1,14 +1,14 @@
 "use client";
 
+import type { MappedPost } from "@/http/mappers/post-mapper/post-mapper";
 import { filterPosts } from "@/utils/filter-posts/filter-posts";
-import type { Post } from "@/utils/parse-post-from-api/parse-post-from-api";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useDeferredValue, useMemo } from "react";
 import { PostCard } from "./post-card";
 
 type PostsListProps = {
-  posts: Post[];
+  posts: MappedPost[];
 };
 
 export function PostsList({ posts }: Readonly<PostsListProps>) {

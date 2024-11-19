@@ -1,7 +1,7 @@
-import type { Post } from "../parse-post-from-api/parse-post-from-api";
+import type { MappedPost } from "@/http/mappers/post-mapper/post-mapper";
 
 type FilterPostsParams = {
-  posts: Post[];
+  posts: MappedPost[];
   q: string;
 };
 
