@@ -1,11 +1,11 @@
+import type { MappedExperience } from "@/http/mappers/experiences-mapper/experiences-mapper";
 import { formatDate } from "@/utils/format-date/format-date";
-import type { Experience } from "@/utils/parse-experiences-from-api/parse-experiences-from-api";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import React from "react";
 
 type ExperiencesProps = {
-  experiences: Experience[];
+  experiences: MappedExperience[];
 };
 
 export async function Experiences({ experiences }: Readonly<ExperiencesProps>) {

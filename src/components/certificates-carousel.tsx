@@ -1,6 +1,6 @@
 "use client";
 
-import type { Certificate } from "@/utils/parse-experiences-from-api/parse-experiences-from-api";
+import type { MappedCertificate } from "@/http/mappers/experiences-mapper/experiences-mapper";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import React from "react";
@@ -8,14 +8,14 @@ import { Card, CardContent } from "./ui/card";
 import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 
 type CertificatesCarouselProps = {
-  certificates: Certificate[];
+  certificates: MappedCertificate[];
 };
 
 export function CertificatesCarousel({
   certificates,
 }: Readonly<CertificatesCarouselProps>) {
   return (
-    <div className="not-prose sm:max-w-auto carousel-md:max-w-full mx-auto w-full max-w-64 sm:mx-0">
+    <div className="not-prose sm:max-w-auto mx-auto w-full max-w-64 sm:mx-0 carousel-md:max-w-full">
       <Carousel
         className="w-full"
         opts={{ align: "start", loop: true }}

@@ -1,25 +1,22 @@
 "use server";
 
-import { env } from "@/env/env";
-import { api } from "@/lib/api";
-import {
-  type ApiExperience,
-  parseExperiencesFromApi,
-} from "@/utils/parse-experiences-from-api/parse-experiences-from-api";
+import { GithubClient } from "@/http/github-client/github-client";
+import { HttpClient } from "@/http/http-client/http-client";
+import { ExperiencesMapper } from "@/http/mappers/experiences-mapper/experiences-mapper";
+import { ExperiencesService } from "@/http/services/experiences-service/experiences-service";
 import { getLocale } from "next-intl/server";
+
+const httpClient = HttpClient.create();
+const githubClient = GithubClient.create(httpClient);
+
+const experiencesService = ExperiencesService.create(githubClient);
+const experiencesMapper = ExperiencesMapper.create();
 
 export async function getExperiences() {
   const locale = await getLocale();
 
-  const response = await api(
-    `${env.server.GITHUB_API_URL}/felipevgomes10/contents/${locale}/experiences.json`,
-  );
+  const experiences = await experiencesService.getExperiences(locale);
+  const mappedExperiences = experiencesMapper.map(experiences);
 
-  if (response.status === 404) return null;
-
-  const experiences: ApiExperience = await response.json();
-
-  const parsedExperiences = parseExperiencesFromApi(experiences);
-
-  return parsedExperiences;
+  return mappedExperiences;
 }
