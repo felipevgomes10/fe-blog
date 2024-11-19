@@ -25,7 +25,7 @@ export async function getAboutMe() {
   const locale = await getLocale();
 
   const aboutMe = await aboutMeService.getAboutMe(locale);
-  const mappedAboutMe = await aboutMeMapper.map(aboutMe);
+  const mappedAboutMe = aboutMeMapper.map(aboutMe);
 
   return mappedAboutMe;
 }

@@ -8,7 +8,7 @@ type MappedAboutMe = {
 type AboutMeInfo = [string];
 
 interface IAboutMeMapper {
-  map: (content: string) => Promise<MappedAboutMe>;
+  map: (content: string) => MappedAboutMe;
 }
 
 export class AboutMeMapper implements IAboutMeMapper {
@@ -18,7 +18,7 @@ export class AboutMeMapper implements IAboutMeMapper {
     return new AboutMeMapper();
   }
 
-  async map(content: string): Promise<MappedAboutMe> {
+  map(content: string): MappedAboutMe {
     const { profile } = this.getAboutMeInformation(content);
 
     return { profile, content };
