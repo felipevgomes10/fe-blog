@@ -69,7 +69,7 @@ export default async function Page({
 
   return (
     <section className="m-auto grid max-w-screen-xl gap-10 md:grid-cols-[max-content_1fr]">
-      <aside>
+      <aside className="sm:pl-[0.625rem]">
         <ProfileCard profile={aboutMe.profile} />
       </aside>
       <div className="prose prose-slate dark:prose-invert lg:prose-xl">
