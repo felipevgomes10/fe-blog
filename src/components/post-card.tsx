@@ -33,8 +33,14 @@ export function PostCard({
   return (
     <Card className="flex flex-col items-center justify-start overflow-hidden transition-all hover:-translate-y-1 hover:border-accent-foreground hover:shadow-md md:flex-row">
       {thumbnail && (
-        <div className="relative h-60 max-h-60 w-full max-w-full md:h-full md:max-w-60">
-          <Image src={thumbnail} alt={title} quality={50} fill />
+        <div className="relative h-60 w-full md:h-full md:w-auto md:min-w-60">
+          <Image
+            className="object-cover object-left-top"
+            src={thumbnail}
+            alt={title}
+            quality={50}
+            fill
+          />
         </div>
       )}
       <div>
