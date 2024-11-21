@@ -5,39 +5,34 @@ import { ProfileCard } from "@/components/profile-card";
 import { getAboutMe } from "@/data/get-about-me";
 import { getExperiences } from "@/data/get-experiences";
 import { env } from "@/env/env";
-import {
-  supportedLocales,
-  type SupportedLocale,
-} from "@/i18n/supported-locales";
+import { routing } from "@/i18n/navigation";
+import { type SupportedLocale } from "@/i18n/supported-locales";
 import type { Metadata } from "next";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { redirect } from "next/navigation";
 
-type Params = {
-  locale: SupportedLocale;
-};
+type Params = Promise<{ locale: SupportedLocale }>;
 
 type GenerateMetadata = {
   params: Params;
 };
 
 type AboutMeProps = {
-  params: {
-    locale: SupportedLocale;
-  };
+  params: Params;
 };
 
 export const revalidate = 3600; // Every hour
 
 export async function generateStaticParams() {
-  const params = supportedLocales.map((locale) => ({ locale }));
+  const params = routing.locales.map((locale) => ({ locale }));
 
   return params;
 }
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: GenerateMetadata): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations({ locale });
 
   const title = `${t("metadata.title")} - ${t("about_me.link")}`;
@@ -54,10 +49,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({
-  params: { locale },
-}: Readonly<AboutMeProps>) {
-  unstable_setRequestLocale(locale);
+export default async function Page({ params }: Readonly<AboutMeProps>) {
+  const { locale } = await params;
+  setRequestLocale(locale);
 
   const [t, aboutMe, myExperiences] = await Promise.all([
     getTranslations("about_me"),

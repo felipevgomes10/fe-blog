@@ -1,13 +1,15 @@
 import { getRequestConfig } from "next-intl/server";
-import { redirect, RedirectType } from "next/navigation";
-import { supportedLocales } from "./supported-locales";
+import { routing } from "./navigation";
 
-export default getRequestConfig(async ({ locale }) => {
-  if (!supportedLocales.includes(locale as (typeof supportedLocales)[number])) {
-    redirect("/en/not-found", RedirectType.replace);
+export default getRequestConfig(async ({ requestLocale }) => {
+  let locale = await requestLocale;
+
+  if (!locale || !routing.locales.includes(locale as any)) {
+    locale = routing.defaultLocale;
   }
 
   return {
+    locale,
     messages: (await import(`./messages/${locale}.json`)).default,
   };
 });

@@ -1,19 +1,18 @@
 import { PostsList } from "@/components/posts-list";
 import { getPosts } from "@/data/get-posts";
 import type { SupportedLocale } from "@/i18n/supported-locales";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Suspense } from "react";
 
+type Params = Promise<{ locale: SupportedLocale }>;
+
 type HomeProps = {
-  params: {
-    locale: SupportedLocale;
-  };
+  params: Params;
 };
 
-export default async function Home({
-  params: { locale },
-}: Readonly<HomeProps>) {
-  unstable_setRequestLocale(locale);
+export default async function Home({ params }: Readonly<HomeProps>) {
+  const { locale } = await params;
+  setRequestLocale(locale);
 
   const [t, posts] = await Promise.all([
     getTranslations({ locale, namespace: "posts_list" }),

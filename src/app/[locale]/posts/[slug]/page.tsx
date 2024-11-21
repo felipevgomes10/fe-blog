@@ -4,18 +4,13 @@ import { ScrollProgress } from "@/components/scroll-progress";
 import { getPost } from "@/data/get-post";
 import { getPosts } from "@/data/get-posts";
 import { env } from "@/env/env";
-import {
-  supportedLocales,
-  type SupportedLocale,
-} from "@/i18n/supported-locales";
+import { routing } from "@/i18n/navigation";
+import { type SupportedLocale } from "@/i18n/supported-locales";
 import type { Metadata } from "next";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 
-type Params = {
-  locale: SupportedLocale;
-  slug: string;
-};
+type Params = Promise<{ locale: SupportedLocale; slug: string }>;
 
 type GenerateMetadata = {
   params: Params;
@@ -31,7 +26,7 @@ export async function generateStaticParams() {
   const posts = await getPosts();
 
   const params = posts.flatMap(({ slug }) => {
-    const postByLocales = supportedLocales.map((locale) => ({
+    const postByLocales = routing.locales.map((locale) => ({
       locale,
       slug,
     }));
@@ -43,8 +38,10 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({
-  params: { locale, slug },
+  params,
 }: GenerateMetadata): Promise<Metadata> {
+  const { locale, slug } = await params;
+
   const [t, post] = await Promise.all([
     getTranslations({ locale }),
     getPost(slug),
@@ -72,10 +69,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function Post({
-  params: { locale, slug },
-}: Readonly<PostProps>) {
-  unstable_setRequestLocale(locale);
+export default async function Post({ params }: Readonly<PostProps>) {
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
 
   const [t, post] = await Promise.all([
     getTranslations({ locale, namespace: "post.not_found" }),

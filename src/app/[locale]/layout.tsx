@@ -4,28 +4,33 @@ import { Toaster } from "@/components/ui/sonner";
 import { ViewTransition } from "@/components/view-transition";
 import { ThemeProvider } from "@/contexts/theme-provider";
 import { Themes } from "@/contexts/theme-provider.types";
-import { supportedLocales } from "@/i18n/supported-locales";
+import { routing } from "@/i18n/navigation";
+import { type SupportedLocale } from "@/i18n/supported-locales";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { Inter } from "next/font/google";
+import { redirect, RedirectType } from "next/navigation";
 
 import "../globals.css";
 
+type Params = Promise<{ locale: SupportedLocale }>;
+
 type GenerateMetadata = {
-  params: { locale: string };
+  params: Params;
 };
 
 type RootLayoutProps = Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
+  params: Params;
 }>;
 
-const inter = Inter({ subsets: ["latin"] });
+export const revalidate = 3600; // Every hour
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: GenerateMetadata): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "metadata" });
 
   return {
@@ -35,16 +40,24 @@ export async function generateMetadata({
   };
 }
 
-export const revalidate = 3600; // Every hour
-
 export function generateStaticParams() {
-  return supportedLocales.map((locale) => ({ locale }));
+  const params = routing.locales.map((locale) => ({ locale }));
+
+  return params;
 }
+
+const inter = Inter({ subsets: ["latin"] });
 
 export default async function RootLayout({
   children,
-  params: { locale },
+  params,
 }: Readonly<RootLayoutProps>) {
+  const { locale } = await params;
+
+  if (!routing.locales.includes(locale as any)) {
+    redirect("/en/not-found", RedirectType.replace);
+  }
+
   const messages = await getMessages();
 
   return (
