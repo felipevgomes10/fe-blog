@@ -13,7 +13,7 @@ export function PageNotFound({
   back,
 }: Readonly<PageNotFoundProps>) {
   return (
-    <section className="grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8">
+    <section className="grid grid-rows-2 place-items-center px-6 py-24 sm:py-32 lg:px-8">
       <div className="text-center">
         <p className="text-base font-semibold text-accent-foreground">404</p>
         <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-5xl">
