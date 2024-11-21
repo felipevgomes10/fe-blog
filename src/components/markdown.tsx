@@ -52,9 +52,7 @@ export function Markdown({ content }: Readonly<MarkdownProps>) {
           return (
             <div className="relative mx-auto w-[290px] max-w-full sm:w-[500px] md:w-screen">
               <CopyButton text={text} />
-              <pre className="" {...rest}>
-                {children}
-              </pre>
+              <pre {...rest}>{children}</pre>
             </div>
           );
         },
