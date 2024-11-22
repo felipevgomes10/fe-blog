@@ -6,6 +6,7 @@ import { HttpClientWithResponseAsText } from "@/http/http-client/http-client-wit
 import { PostMapper } from "@/http/mappers/post-mapper/post-mapper";
 import { PostService } from "@/http/services/post-service/post-service";
 import { defaultLocale, type SupportedLocale } from "@/i18n/supported-locales";
+import { unstable_cache } from "next/cache";
 
 const httpClient = HttpClient.create();
 const githubClient = GithubClient.create(httpClient);
@@ -22,7 +23,16 @@ const postService = PostService.create(
 const postMapper = PostMapper.create();
 
 export async function getPosts(locale: SupportedLocale = defaultLocale) {
-  const posts = await postService.getPosts(locale);
+  const getCachedPosts = unstable_cache(
+    (locale: string) => postService.getPosts(locale),
+    [locale],
+    {
+      tags: ["posts"],
+      revalidate: 3600, // Every hour
+    },
+  );
+
+  const posts = await getCachedPosts(locale);
   const mappedPosts = posts.map(postMapper.map);
 
   return mappedPosts;

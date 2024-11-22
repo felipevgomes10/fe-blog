@@ -21,7 +21,6 @@ export class GithubClient implements IHttpClient {
       const response = await this.httpClient.sendRequest<TResponse>(url, {
         ...options,
         headers,
-        cache: "force-cache",
       });
 
       return response;
