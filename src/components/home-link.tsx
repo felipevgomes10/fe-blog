@@ -18,6 +18,7 @@ export function HomeLink() {
       }
       data-disabled={pathname === "/"}
       href={`/?${search.toString()}`}
+      prefetch
     >
       <ChevronLeft
         className="app-header-icon h-6 w-6 data-[hidden=true]:hidden"

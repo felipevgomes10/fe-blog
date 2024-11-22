@@ -34,7 +34,7 @@ export function Footer() {
         </span>
         {pathname !== "/about-me" && (
           <span className="text-xs text-secondary-foreground underline opacity-50">
-            <ViewTransitionLink href="/about-me">
+            <ViewTransitionLink href="/about-me" prefetch>
               {t("link")}
             </ViewTransitionLink>
           </span>
