@@ -3,7 +3,7 @@ import { hljs } from "@/lib/highlight";
 import { cn } from "@/lib/utils";
 import { createLine } from "@/utils/create-line/create-line";
 import { ExternalLink } from "lucide-react";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { type ExtraProps } from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
 import { z } from "zod";
@@ -13,17 +13,46 @@ type MarkdownProps = {
   content: MappedPost["content"];
 };
 
+type HeadingProps = JSX.IntrinsicElements["h1"] &
+  ExtraProps & {
+    children: string;
+  };
+
+type BookmarkableHeadings = Record<
+  (typeof headings)[number],
+  (props: HeadingProps) => JSX.Element
+>;
+
 const preTagSchema = z.object({
   props: z.object({
     children: z.string(),
   }),
 });
 
+const headings = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
+const bookmarkableHeadings = headings.reduce((acc, heading) => {
+  acc[heading] = (props: HeadingProps) => {
+    const { node, children, ...rest } = props;
+    const id = (children as string).toLowerCase().replace(/\s/g, "-");
+
+    const Heading = heading;
+
+    return (
+      <Heading {...rest} id={id}>
+        {children}
+      </Heading>
+    );
+  };
+
+  return acc;
+}, {} as BookmarkableHeadings);
+
 export function Markdown({ content }: Readonly<MarkdownProps>) {
   return (
     <ReactMarkdown
       rehypePlugins={[rehypeRaw, rehypeSanitize]}
       components={{
+        ...(bookmarkableHeadings as any),
         a: (props) => {
           const { node, children, className, ...rest } = props;
 
