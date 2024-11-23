@@ -2,6 +2,7 @@ import { getPosts } from "@/data/get-posts";
 import type { SupportedLocale } from "@/i18n/supported-locales";
 import { getLocale } from "next-intl/server";
 import { Suspense } from "react";
+import { AppHeaderWrapper } from "./app-header-wrapper";
 import { HomeLink } from "./home-link";
 import LocaleSwitcher from "./locale-switcher";
 import { Search } from "./search";
@@ -13,7 +14,7 @@ export async function AppHeader() {
   const postsPromise = getPosts(locale as SupportedLocale);
 
   return (
-    <div className="app-header sticky top-0 z-50 bg-background px-6 py-4">
+    <AppHeaderWrapper>
       <nav className="m-auto flex w-full max-w-screen-xl flex-wrap items-center justify-start gap-4 py-4 sm:flex-nowrap">
         <Suspense>
           <HomeLink />
@@ -26,6 +27,6 @@ export async function AppHeader() {
           <ThemeToggle />
         </div>
       </nav>
-    </div>
+    </AppHeaderWrapper>
   );
 }
