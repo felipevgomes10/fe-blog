@@ -1,6 +1,5 @@
 "use client";
 
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import {
   Card,
   CardContent,
@@ -13,6 +12,7 @@ import { Separator } from "@/components/ui/separator";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import React, { useState } from "react";
+import { Avatar, AvatarImage } from "./ui/avatar";
 
 type ProfileCardProps = {
   profile: string;
@@ -62,9 +62,19 @@ export function ProfileCard({ profile }: Readonly<ProfileCardProps>) {
       }}
     >
       <CardHeader className="flex items-center">
-        <Avatar className="h-24 w-24">
-          <AvatarImage className="object-cover" src={profile} />
-        </Avatar>
+        <div className="group relative h-28 w-28">
+          <svg className="h-full w-full rotate-90">
+            <circle
+              className="fill-none stroke-foreground stroke-2 transition-all [stroke-dasharray:565.48] [stroke-dashoffset:565.48] [transition-duration:2s] group-hover:[stroke-dashoffset:0]"
+              cx="50%"
+              cy="50%"
+              r="47%"
+            ></circle>
+          </svg>
+          <Avatar className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full">
+            <AvatarImage className="object-cover" src={profile} />
+          </Avatar>
+        </div>
         <CardTitle>Felipe Gomes</CardTitle>
         <CardDescription className="text-center">{t("bio")}</CardDescription>
       </CardHeader>
