@@ -47,6 +47,8 @@
     "now": "Now"
   },
   "toast": {
+    "copy_heading_link_success": "Link copied to clipboard",
+    "copy_heading_link_error": "Failed to copy link to clipboard",
     "success": "Code copied to clipboard",
     "error": "Failed to copy code to clipboard"
   }

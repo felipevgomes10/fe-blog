@@ -1,26 +1,26 @@
 import type { MappedPost } from "@/http/mappers/post-mapper/post-mapper";
 import { hljs } from "@/lib/highlight";
 import { cn } from "@/lib/utils";
+import { constants } from "@/utils/constants";
 import { createLine } from "@/utils/create-line/create-line";
 import { ExternalLink } from "lucide-react";
-import ReactMarkdown, { type ExtraProps } from "react-markdown";
+import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
 import { z } from "zod";
+import {
+  BookmarkableHeading,
+  type BookmarkableHeadingProps,
+} from "./bookmarkable-heading";
 import { CopyButton } from "./copy-button";
 
 type MarkdownProps = {
   content: MappedPost["content"];
 };
 
-type HeadingProps = JSX.IntrinsicElements["h1"] &
-  ExtraProps & {
-    children: string;
-  };
-
 type BookmarkableHeadings = Record<
-  (typeof headings)[number],
-  (props: HeadingProps) => JSX.Element
+  (typeof constants.headings)[number],
+  (props: BookmarkableHeadingProps) => JSX.Element
 >;
 
 const preTagSchema = z.object({
@@ -29,20 +29,8 @@ const preTagSchema = z.object({
   }),
 });
 
-const headings = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
-const bookmarkableHeadings = headings.reduce((acc, heading) => {
-  acc[heading] = (props: HeadingProps) => {
-    const { node, children, ...rest } = props;
-    const id = (children as string).toLowerCase().replace(/\s/g, "-");
-
-    const Heading = heading;
-
-    return (
-      <Heading {...rest} id={id}>
-        {children}
-      </Heading>
-    );
-  };
+const bookmarkableHeadings = constants.headings.reduce((acc, heading) => {
+  acc[heading] = BookmarkableHeading.bind(null, heading);
 
   return acc;
 }, {} as BookmarkableHeadings);

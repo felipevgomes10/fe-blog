@@ -47,6 +47,8 @@
     "now": "Agora"
   },
   "toast": {
+    "copy_heading_link_success": "Link copiado para a área de transferência",
+    "copy_heading_link_error": "Falha ao copiar o link para a área de transferência",
     "success": "Código copiado para a área de transferência",
     "error": "Falha ao copiar o código para a área de transferência"
   }
