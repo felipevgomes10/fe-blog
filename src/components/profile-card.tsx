@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { constants } from "@/utils/constants";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import React, { useState } from "react";
@@ -69,11 +70,17 @@ export function ProfileCard({ profile }: Readonly<ProfileCardProps>) {
               cx="50%"
               cy="50%"
               r="47%"
-            ></circle>
+            />
           </svg>
-          <Avatar className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full">
-            <AvatarImage className="object-cover" src={profile} />
-          </Avatar>
+          <a
+            href={constants.linkedinLink}
+            target="_blank"
+            referrerPolicy="no-referrer"
+          >
+            <Avatar className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full">
+              <AvatarImage className="object-cover" src={profile} />
+            </Avatar>
+          </a>
         </div>
         <CardTitle>Felipe Gomes</CardTitle>
         <CardDescription className="text-center">{t("bio")}</CardDescription>
