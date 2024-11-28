@@ -14,7 +14,9 @@ export function CopyableLink({ id, children }: Readonly<CopyableLinkProps>) {
 
   async function handleCopy() {
     try {
-      await navigator.clipboard.writeText(`${window.location.href}#${id}`);
+      const fullUrl = `${window.location.origin}${window.location.pathname}#${id}`;
+      await navigator.clipboard.writeText(fullUrl);
+
       toast.success(t("copy_heading_link_success"));
     } catch (error) {
       toast.error(t("copy_heading_link_error"));
