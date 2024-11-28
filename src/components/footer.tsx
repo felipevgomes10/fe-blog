@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "@/i18n/navigation";
+import { constants } from "@/utils/constants";
 import { Linkedin } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { GithubIcon } from "./github-icon";
@@ -14,14 +15,14 @@ export function Footer() {
     <footer className="flex flex-col items-center justify-center gap-3 pb-4">
       <div className="flex items-center justify-center gap-4">
         <a
-          href="https://github.com/felipevgomes10"
+          href={constants.githubLink}
           target="_blank"
           referrerPolicy="no-referrer"
         >
           <GithubIcon />
         </a>
         <a
-          href="https://www.linkedin.com/in/felipe-gomes-4b70221a8/"
+          href={constants.linkedinLink}
           target="_blank"
           referrerPolicy="no-referrer"
         >
