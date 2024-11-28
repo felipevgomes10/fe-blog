@@ -14,6 +14,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import React, { useState } from "react";
 import { Avatar, AvatarImage } from "./ui/avatar";
+import { WaveEmoji } from "./wave-emoji";
 
 type ProfileCardProps = {
   profile: string;
@@ -22,10 +23,10 @@ type ProfileCardProps = {
 const logos = ["/js.svg", "/ts.svg", "/react.svg", "/node.svg"] as const;
 
 export function ProfileCard({ profile }: Readonly<ProfileCardProps>) {
+  const t = useTranslations("about_me");
+
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
-
-  const t = useTranslations("about_me");
 
   function handleMouseMove(e: React.MouseEvent) {
     const card = e.currentTarget;
@@ -82,7 +83,10 @@ export function ProfileCard({ profile }: Readonly<ProfileCardProps>) {
             </Avatar>
           </a>
         </div>
-        <CardTitle>Felipe Gomes</CardTitle>
+        <CardTitle className="relative">
+          Felipe Gomes
+          <WaveEmoji className="absolute -right-8" />
+        </CardTitle>
         <CardDescription className="text-center">{t("bio")}</CardDescription>
       </CardHeader>
       <Separator className="mx-auto mb-5 w-[80%]" />
