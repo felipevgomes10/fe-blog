@@ -1,4 +1,5 @@
 import { CertificatesCarousel } from "@/components/certificates-carousel";
+import { CopyableLink } from "@/components/copyable-link";
 import { Experiences } from "@/components/experiences";
 import { Markdown } from "@/components/markdown";
 import { ProfileCard } from "@/components/profile-card";
@@ -70,14 +71,18 @@ export default async function Page({ params }: Readonly<AboutMeProps>) {
         <Markdown content={aboutMe.content} />
         {myExperiences?.experiences && myExperiences.experiences.length > 0 && (
           <div>
-            <h2>{t("experience_title")}</h2>
+            <CopyableLink id="experiences">
+              <h2 id="experiences">{t("experience_title")}</h2>
+            </CopyableLink>
             <Experiences experiences={myExperiences.experiences} />
           </div>
         )}
         {myExperiences?.certificates &&
           myExperiences.certificates.length > 0 && (
             <div>
-              <h2>{t("certificates_title")}</h2>
+              <CopyableLink id="certificates">
+                <h2 id="certificates">{t("certificates_title")}</h2>
+              </CopyableLink>
               <CertificatesCarousel certificates={myExperiences.certificates} />
             </div>
           )}
