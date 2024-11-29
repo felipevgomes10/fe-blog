@@ -62,9 +62,13 @@ export async function generateMetadata({
     description,
     openGraph: {
       title,
+      siteName: t("metadata.title"),
       description,
       images: post.thumbnail,
-      url: `${env.server.VERCEL_URL}/${locale}/posts/${slug}`,
+      url: `https://${env.server.VERCEL_URL}/${locale}/posts/${slug}`,
+    },
+    twitter: {
+      card: "summary",
     },
   };
 }

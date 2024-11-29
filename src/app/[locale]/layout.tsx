@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { ViewTransition } from "@/components/view-transition";
 import { ThemeProvider } from "@/contexts/theme-provider";
 import { Themes } from "@/contexts/theme-provider.types";
+import { env } from "@/env/env";
 import { routing } from "@/i18n/navigation";
 import { type SupportedLocale } from "@/i18n/supported-locales";
 import type { Metadata } from "next";
@@ -33,10 +34,24 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "metadata" });
 
+  const title = t("title");
+  const description = t("description");
+
   return {
-    title: t("title"),
-    description: t("description"),
+    title,
+    description,
     keywords: ["Next.js", "React", "Javascript", "Typescript", "Node"],
+    openGraph: {
+      title,
+      siteName: title,
+      description,
+      images:
+        "https://utfs.io/a/oqi3glmmqm/WfWc1HX19bacvYTy6Ue2dKHD6yEGkfzSwVsY1mrpnT80XQ5R",
+      url: `https://${env.server.VERCEL_URL}/${locale}`,
+    },
+    twitter: {
+      card: "summary",
+    },
   };
 }
 

@@ -34,7 +34,10 @@ export async function generateMetadata({
   params,
 }: GenerateMetadata): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale });
+  const [t, aboutMe] = await Promise.all([
+    getTranslations({ locale }),
+    getAboutMe(),
+  ]);
 
   const title = `${t("metadata.title")} - ${t("about_me.link")}`;
   const description = t("about_me.bio_2");
@@ -44,8 +47,13 @@ export async function generateMetadata({
     description,
     openGraph: {
       title,
+      siteName: t("metadata.title"),
       description,
-      url: `${env.server.VERCEL_URL}/${locale}/about-me`,
+      images: aboutMe.profile,
+      url: `https://${env.server.VERCEL_URL}/${locale}/about-me`,
+    },
+    twitter: {
+      card: "summary",
     },
   };
 }
