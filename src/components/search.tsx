@@ -15,7 +15,7 @@ import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { use, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "./ui/button";
-import { DialogTitle } from "./ui/dialog";
+import { DialogDescription, DialogTitle } from "./ui/dialog";
 import { Input } from "./ui/input";
 import { ViewTransitionLink } from "./view-transition-link";
 
@@ -71,7 +71,10 @@ export function Search({ postsPromise }: { postsPromise: Promise<any> }) {
   return (
     <>
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <DialogTitle className="hidden">{t("search_placeholder")}</DialogTitle>
+        <DialogTitle className="sr-only">{t("search_placeholder")}</DialogTitle>
+        <DialogDescription className="sr-only">
+          {t("search_placeholder")}
+        </DialogDescription>
         <CommandInput
           value={commandValue}
           onValueChange={setCommandValue}
