@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/command";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { filterPosts } from "@/utils/filter-posts/filter-posts";
+import { startViewTransition } from "@/utils/start-view-transition/start-view-transition";
 import { Search as SearchIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
@@ -60,6 +61,12 @@ export function Search({ postsPromise }: { postsPromise: Promise<any> }) {
     router.push(`${pathname}?${search.toString()}`);
   }
 
+  function handleItemSelect(value: string) {
+    startViewTransition();
+    router.push(`/posts/${value}`);
+    handleCommandSearchClick();
+  }
+
   function handleCommandSearchClick() {
     setOpen(false);
   }
@@ -84,7 +91,11 @@ export function Search({ postsPromise }: { postsPromise: Promise<any> }) {
           <CommandEmpty>{t("empty")}</CommandEmpty>
           <CommandGroup heading={t("search_group")}>
             {filteredPosts.map((post) => (
-              <CommandItem key={post.slug}>
+              <CommandItem
+                key={post.slug}
+                value={post.slug}
+                onSelect={handleItemSelect}
+              >
                 <ViewTransitionLink
                   href={`/posts/${post.slug}`}
                   onClick={handleCommandSearchClick}
