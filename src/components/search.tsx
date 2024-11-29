@@ -8,7 +8,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { usePathname, useRouter } from "@/i18n/navigation";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { filterPosts } from "@/utils/filter-posts/filter-posts";
 import { startViewTransition } from "@/utils/start-view-transition/start-view-transition";
 import { Search as SearchIcon } from "lucide-react";
@@ -18,7 +18,6 @@ import { use, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "./ui/button";
 import { DialogDescription, DialogTitle } from "./ui/dialog";
 import { Input } from "./ui/input";
-import { ViewTransitionLink } from "./view-transition-link";
 
 export function Search({ postsPromise }: { postsPromise: Promise<any> }) {
   const t = useTranslations("app_header");
@@ -96,12 +95,12 @@ export function Search({ postsPromise }: { postsPromise: Promise<any> }) {
                 value={post.slug}
                 onSelect={handleItemSelect}
               >
-                <ViewTransitionLink
+                <Link
                   href={`/posts/${post.slug}`}
-                  onClick={handleCommandSearchClick}
+                  onClick={(e) => e.preventDefault()}
                 >
                   {post.title}
-                </ViewTransitionLink>
+                </Link>
               </CommandItem>
             ))}
           </CommandGroup>
