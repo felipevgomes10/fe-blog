@@ -75,7 +75,7 @@ export default async function Page({ params }: Readonly<AboutMeProps>) {
       <aside className="sm:pl-[0.625rem]">
         <ProfileCard profile={aboutMe.profile} />
       </aside>
-      <div className="prose prose-slate dark:prose-invert lg:prose-xl">
+      <div className="prose prose-slate dark:prose-invert lg:prose-xl [&>div:first-child>:is(h1,h2,h3,h4,h5,h6)]:mt-0">
         <Markdown content={aboutMe.content} />
         {myExperiences?.experiences && myExperiences.experiences.length > 0 && (
           <div>
